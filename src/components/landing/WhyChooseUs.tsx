@@ -1,39 +1,38 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
-import { Shield, Clock, Award, Users } from "lucide-react";
+import technicianImg from "@/assets/technician-1.png";
+import warrantyImg from "@/assets/warranty-badge.png";
+import fastResponseImg from "@/assets/fast-response.png";
+import happyCustomersImg from "@/assets/happy-customers.png";
 
 const features = [
   {
-    icon: Shield,
+    image: technicianImg,
     title: "Verified Professionals",
-    description: "Background-checked and trained experts you can trust",
+    description: "Background-checked and trained experts you can trust with your home appliances",
     value: "100%",
     suffix: "Verified",
-    color: "primary",
   },
   {
-    icon: Award,
+    image: warrantyImg,
     title: "90 Days Warranty",
-    description: "Free re-service guarantee on all repairs",
+    description: "Free re-service guarantee on all repairs. Your satisfaction is our priority",
     value: "90",
     suffix: "Days",
-    color: "success",
   },
   {
-    icon: Clock,
+    image: fastResponseImg,
     title: "45 Min Response",
-    description: "Quick arrival time for urgent repairs",
+    description: "Quick arrival time for urgent repairs. We value your time",
     value: "45",
     suffix: "Min",
-    color: "warning",
   },
   {
-    icon: Users,
+    image: happyCustomersImg,
     title: "Trusted by Many",
-    description: "Join our growing family of happy customers",
+    description: "Join our growing family of happy customers across Bangalore",
     value: "500",
     suffix: "+",
-    color: "primary",
   },
 ];
 
@@ -65,7 +64,7 @@ const Counter = ({ value, suffix }: { value: string; suffix: string }) => {
   }, [isInView, numericValue]);
 
   return (
-    <span ref={ref} className="text-4xl md:text-5xl font-bold">
+    <span ref={ref} className="text-3xl md:text-4xl font-bold text-primary">
       {value === "100%" ? value : count}
       {value !== "100%" && suffix}
     </span>
@@ -77,7 +76,7 @@ const WhyChooseUs = () => {
   const isInView = useInView(containerRef, { once: true, margin: "-100px" });
 
   return (
-    <section id="why-us" className="py-20 md:py-28 bg-background relative overflow-hidden">
+    <section id="why-us" className="py-20 md:py-28 bg-muted/30 relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-3xl" />
       
@@ -105,8 +104,8 @@ const WhyChooseUs = () => {
           </p>
         </motion.div>
 
-        {/* Features Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+        {/* Features Grid - 2x2 */}
+        <div className="grid md:grid-cols-2 gap-6 md:gap-8 max-w-5xl mx-auto">
           {features.map((feature, index) => (
             <motion.div
               key={feature.title}
@@ -120,34 +119,35 @@ const WhyChooseUs = () => {
                 {/* Background glow on hover */}
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 
-                <div className="relative z-10">
-                  {/* Icon */}
+                <div className="relative z-10 flex flex-col md:flex-row items-center gap-6">
+                  {/* Image */}
                   <motion.div
-                    className={`w-14 h-14 rounded-xl bg-${feature.color}/10 flex items-center justify-center mb-5`}
-                    style={{
-                      backgroundColor: `hsl(var(--${feature.color}) / 0.1)`,
-                    }}
-                    whileHover={{ rotate: [0, -10, 10, 0] }}
-                    transition={{ duration: 0.5 }}
+                    className="w-32 h-32 md:w-36 md:h-36 rounded-2xl overflow-hidden bg-muted flex-shrink-0 shadow-lg"
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.3 }}
                   >
-                    <feature.icon
-                      className="w-7 h-7"
-                      style={{ color: `hsl(var(--${feature.color}))` }}
+                    <img
+                      src={feature.image}
+                      alt={feature.title}
+                      className="w-full h-full object-cover"
                     />
                   </motion.div>
 
-                  {/* Counter */}
-                  <div className="text-primary mb-2">
-                    <Counter value={feature.value} suffix={feature.suffix} />
-                  </div>
+                  {/* Content */}
+                  <div className="text-center md:text-left flex-1">
+                    {/* Counter */}
+                    <div className="mb-2">
+                      <Counter value={feature.value} suffix={feature.suffix} />
+                    </div>
 
-                  {/* Title & Description */}
-                  <h3 className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
-                    {feature.title}
-                  </h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">
-                    {feature.description}
-                  </p>
+                    {/* Title & Description */}
+                    <h3 className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
+                      {feature.title}
+                    </h3>
+                    <p className="text-muted-foreground text-sm leading-relaxed">
+                      {feature.description}
+                    </p>
+                  </div>
                 </div>
               </div>
             </motion.div>
