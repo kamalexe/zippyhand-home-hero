@@ -70,39 +70,6 @@ const Hero = ({ onBookService }: HeroProps) => {
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
-        {/* Availability Badge - Top Center */}
-        <motion.div
-          initial={{ opacity: 0, y: -30, scale: 0.9 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-          className="flex justify-center mb-8"
-        >
-          <motion.div 
-            className="inline-flex items-center gap-3 bg-card/80 backdrop-blur-sm border border-border/50 text-foreground px-5 py-2.5 rounded-full shadow-lg"
-            whileHover={{ scale: 1.05, boxShadow: "0 10px 40px -10px hsl(var(--primary) / 0.3)" }}
-            transition={{ type: "spring", stiffness: 400, damping: 20 }}
-          >
-            <motion.div
-              className="flex items-center gap-1.5"
-              animate={{ opacity: [1, 0.7, 1] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            >
-              <span className="w-2 h-2 bg-success rounded-full animate-pulse" />
-              <span className="text-sm font-medium text-success">Available 7 Days</span>
-            </motion.div>
-            <span className="w-px h-4 bg-border" />
-            <div className="flex items-center gap-1.5">
-              <MapPin className="w-4 h-4 text-primary" />
-              <span className="text-sm font-medium">Bangalore</span>
-            </div>
-            <span className="w-px h-4 bg-border" />
-            <div className="flex items-center gap-1.5">
-              <Clock className="w-4 h-4 text-primary" />
-              <span className="text-sm font-medium">8 AM - 9 PM</span>
-            </div>
-          </motion.div>
-        </motion.div>
-
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Left Content */}
           <motion.div
@@ -111,6 +78,16 @@ const Hero = ({ onBookService }: HeroProps) => {
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="text-center lg:text-left order-2 lg:order-1"
           >
+            {/* Location Badge */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.5 }}
+              className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-6"
+            >
+              <MapPin className="w-4 h-4" />
+              Now Serving in Bangalore
+            </motion.div>
 
             <motion.h1
               className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight mb-6"
