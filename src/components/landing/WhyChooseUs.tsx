@@ -104,9 +104,9 @@ const WhyChooseUs = () => {
           </p>
         </motion.div>
 
-        {/* Features Grid - 2x2 */}
+        {/* Features Grid - 1 col on mobile, 2x2 on tablet+ */}
         <motion.div 
-          className="grid md:grid-cols-2 gap-6 md:gap-8 max-w-5xl mx-auto"
+          className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 md:gap-8 max-w-5xl mx-auto"
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
           variants={{
