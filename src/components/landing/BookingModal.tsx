@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Calendar, Clock, MapPin, Phone, User, Wrench, CheckCircle } from "lucide-react";
+import { X, Calendar, Clock, MapPin, Phone, User, Wrench, CheckCircle, Tag } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -12,6 +12,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
+import { format, addDays } from "date-fns";
 
 interface BookingModalProps {
   isOpen: boolean;
@@ -26,6 +27,19 @@ const services = [
   "AC Gas Charging",
   "Washing Machine Repair",
   "RO Repair & Service",
+];
+
+const brands = [
+  "Samsung",
+  "LG",
+  "Voltas",
+  "Daikin",
+  "Blue Star",
+  "Hitachi",
+  "Carrier",
+  "Whirlpool",
+  "Godrej",
+  "Other",
 ];
 
 const timeSlots = [
@@ -43,11 +57,27 @@ const BookingModal = ({ isOpen, onClose, preSelectedService }: BookingModalProps
     name: "",
     phone: "",
     service: preSelectedService || "",
+    brand: "",
     date: "",
     timeSlot: "",
     address: "",
     landmark: "",
   });
+
+  // Generate next 7 days for date selection
+  const dateOptions = useMemo(() => {
+    const dates = [];
+    for (let i = 1; i <= 7; i++) {
+      const date = addDays(new Date(), i);
+      dates.push({
+        value: format(date, "yyyy-MM-dd"),
+        day: format(date, "EEE"),
+        date: format(date, "d"),
+        month: format(date, "MMM"),
+      });
+    }
+    return dates;
+  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -65,6 +95,7 @@ const BookingModal = ({ isOpen, onClose, preSelectedService }: BookingModalProps
       name: "",
       phone: "",
       service: "",
+      brand: "",
       date: "",
       timeSlot: "",
       address: "",
@@ -72,11 +103,6 @@ const BookingModal = ({ isOpen, onClose, preSelectedService }: BookingModalProps
     });
     onClose();
   };
-
-  // Get tomorrow's date as minimum
-  const tomorrow = new Date();
-  tomorrow.setDate(tomorrow.getDate() + 1);
-  const minDate = tomorrow.toISOString().split("T")[0];
 
   return (
     <AnimatePresence>
@@ -199,45 +225,90 @@ const BookingModal = ({ isOpen, onClose, preSelectedService }: BookingModalProps
                     </Select>
                   </div>
 
-                  {/* Date & Time Row */}
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="date" className="flex items-center gap-2">
-                        <Calendar className="w-4 h-4 text-primary" />
-                        Date
-                      </Label>
-                      <Input
-                        id="date"
-                        type="date"
-                        required
-                        min={minDate}
-                        value={formData.date}
-                        onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-                        className="rounded-xl"
-                      />
+                  {/* Brand Selection */}
+                  <div className="space-y-2">
+                    <Label className="flex items-center gap-2">
+                      <Tag className="w-4 h-4 text-primary" />
+                      Select Brand
+                    </Label>
+                    <div className="flex flex-wrap gap-2">
+                      {brands.map((brand) => (
+                        <motion.button
+                          key={brand}
+                          type="button"
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                          onClick={() => setFormData({ ...formData, brand })}
+                          className={`px-3 py-1.5 rounded-full text-sm font-medium transition-all border ${
+                            formData.brand === brand
+                              ? "bg-primary text-primary-foreground border-primary"
+                              : "bg-muted/50 text-foreground border-border hover:border-primary/50"
+                          }`}
+                        >
+                          {brand}
+                        </motion.button>
+                      ))}
                     </div>
-                    <div className="space-y-2">
-                      <Label className="flex items-center gap-2">
-                        <Clock className="w-4 h-4 text-primary" />
-                        Time Slot
-                      </Label>
-                      <Select
-                        value={formData.timeSlot}
-                        onValueChange={(value) => setFormData({ ...formData, timeSlot: value })}
-                        required
-                      >
-                        <SelectTrigger className="rounded-xl">
-                          <SelectValue placeholder="Select time" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {timeSlots.map((slot) => (
-                            <SelectItem key={slot} value={slot}>
-                              {slot}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
+                  </div>
+
+                  {/* Date Selection - Horizontal Scrollable Cards */}
+                  <div className="space-y-2">
+                    <Label className="flex items-center gap-2">
+                      <Calendar className="w-4 h-4 text-primary" />
+                      Select Date
+                    </Label>
+                    <div className="flex gap-2 overflow-x-auto pb-2 -mx-1 px-1 scrollbar-hide">
+                      {dateOptions.map((dateOption) => (
+                        <motion.button
+                          key={dateOption.value}
+                          type="button"
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                          onClick={() => setFormData({ ...formData, date: dateOption.value })}
+                          className={`flex-shrink-0 flex flex-col items-center justify-center w-16 h-20 rounded-xl border-2 transition-all ${
+                            formData.date === dateOption.value
+                              ? "bg-primary text-primary-foreground border-primary shadow-lg"
+                              : "bg-muted/30 text-foreground border-border hover:border-primary/50"
+                          }`}
+                        >
+                          <span className={`text-xs font-medium ${
+                            formData.date === dateOption.value ? "text-primary-foreground/80" : "text-muted-foreground"
+                          }`}>
+                            {dateOption.day}
+                          </span>
+                          <span className="text-xl font-bold">{dateOption.date}</span>
+                          <span className={`text-xs ${
+                            formData.date === dateOption.value ? "text-primary-foreground/80" : "text-muted-foreground"
+                          }`}>
+                            {dateOption.month}
+                          </span>
+                        </motion.button>
+                      ))}
                     </div>
+                  </div>
+
+                  {/* Time Slot */}
+                  <div className="space-y-2">
+                    <Label className="flex items-center gap-2">
+                      <Clock className="w-4 h-4 text-primary" />
+                      Time Slot
+                    </Label>
+                    <Select
+                      value={formData.timeSlot}
+                      onValueChange={(value) => setFormData({ ...formData, timeSlot: value })}
+                      required
+                    >
+                      <SelectTrigger className="rounded-xl">
+                        <SelectValue placeholder="Select time slot" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {timeSlots.map((slot) => (
+                          <SelectItem key={slot} value={slot}>
+                            {slot}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
                   </div>
 
                   {/* Address */}
