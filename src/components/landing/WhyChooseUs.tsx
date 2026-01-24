@@ -76,44 +76,30 @@ const WhyChooseUs = () => {
   const isInView = useInView(containerRef, { once: true, margin: "-100px" });
 
   return (
-    <section id="why-us" className="py-20 md:py-28 bg-muted/30 relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-3xl" />
-      
+    <section id="why-us" className="py-12 md:py-20 bg-muted/30 relative overflow-hidden">
       <div className="container mx-auto px-4 relative z-10" ref={containerRef}>
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-10 md:mb-14"
         >
-          <motion.span
-            className="inline-block text-primary font-semibold text-sm uppercase tracking-wider mb-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 0.2 }}
-          >
-            Why ZippyHand?
-          </motion.span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-            The <span className="text-primary">Smart Choice</span> for Home Repairs
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground">
+            WHY CHOOSE <span className="text-primary">ZIPPYHAND</span>
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            We're not just another repair service. We're your trusted partner for keeping your home running smoothly.
-          </p>
         </motion.div>
 
-        {/* Features Grid - 1 col on mobile, 2x2 on tablet+ */}
+        {/* Features Grid - 2x2 on all screen sizes */}
         <motion.div 
-          className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 md:gap-8 max-w-5xl mx-auto"
+          className="grid grid-cols-2 gap-3 sm:gap-4 md:gap-6 max-w-4xl mx-auto"
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
           variants={{
             hidden: {},
             visible: {
               transition: {
-                staggerChildren: 0.15,
+                staggerChildren: 0.1,
                 delayChildren: 0.2,
               },
             },
@@ -123,116 +109,47 @@ const WhyChooseUs = () => {
             <motion.div
               key={feature.title}
               variants={{
-                hidden: { 
-                  opacity: 0, 
-                  scale: 0.8,
-                  rotateX: 45,
-                  y: 60,
-                },
+                hidden: { opacity: 0, y: 30 },
                 visible: { 
                   opacity: 1, 
-                  scale: 1,
-                  rotateX: 0,
                   y: 0,
                   transition: {
                     type: "spring",
                     stiffness: 100,
                     damping: 15,
-                    duration: 0.6,
                   },
                 },
               }}
               whileHover={{ 
-                y: -10, 
-                scale: 1.03,
+                y: -5, 
                 transition: { type: "spring", stiffness: 300 }
               }}
-              className="group perspective-1000"
+              className="group"
             >
-              <motion.div 
-                className="bg-card border border-border rounded-2xl p-6 md:p-8 h-full shadow-sm hover:shadow-2xl transition-all duration-500 relative overflow-hidden"
-                initial={{ boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1)" }}
-                whileHover={{ 
-                  boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
-                }}
-              >
-                {/* Animated background gradient */}
-                <motion.div 
-                  className="absolute inset-0 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent"
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileHover={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.4 }}
-                />
-                
-                {/* Shimmer effect on hover */}
+              <div className="bg-card rounded-xl sm:rounded-2xl p-3 sm:p-5 md:p-6 h-full shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col items-center text-center">
+                {/* Image container */}
                 <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12"
-                  initial={{ x: "-100%" }}
-                  whileHover={{ x: "200%" }}
-                  transition={{ duration: 0.8, ease: "easeInOut" }}
-                />
-                
-                <div className="relative z-10 flex flex-col items-center text-center gap-4">
-                  {/* Image with pop-in animation */}
-                  <motion.div
-                    className="w-28 h-28 md:w-32 md:h-32 rounded-2xl overflow-hidden bg-muted flex-shrink-0 shadow-lg"
-                    initial={{ scale: 0, rotate: -10 }}
-                    animate={isInView ? { scale: 1, rotate: 0 } : {}}
-                    transition={{ 
-                      delay: 0.3 + index * 0.15, 
-                      type: "spring", 
-                      stiffness: 200,
-                      damping: 15 
-                    }}
-                    whileHover={{ 
-                      scale: 1.1, 
-                      rotate: 3,
-                      transition: { type: "spring", stiffness: 300 }
-                    }}
-                  >
-                    <motion.img
-                      src={feature.image}
-                      alt={feature.title}
-                      className="w-full h-full object-cover"
-                      whileHover={{ scale: 1.15 }}
-                      transition={{ duration: 0.4 }}
-                    />
-                  </motion.div>
+                  className="w-full aspect-[4/3] rounded-lg sm:rounded-xl overflow-hidden bg-muted mb-3 sm:mb-4"
+                  whileHover={{ scale: 1.02 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <img
+                    src={feature.image}
+                    alt={feature.title}
+                    className="w-full h-full object-cover"
+                  />
+                </motion.div>
 
-                  {/* Content */}
-                  <div className="flex-1">
-                    {/* Counter with bounce */}
-                    <motion.div 
-                      className="mb-2"
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={isInView ? { opacity: 1, y: 0 } : {}}
-                      transition={{ delay: 0.4 + index * 0.15, duration: 0.5 }}
-                    >
-                      <Counter value={feature.value} suffix={feature.suffix} />
-                    </motion.div>
-
-                    {/* Title with slide-up */}
-                    <motion.h3 
-                      className="text-lg md:text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors duration-300"
-                      initial={{ opacity: 0, y: 15 }}
-                      animate={isInView ? { opacity: 1, y: 0 } : {}}
-                      transition={{ delay: 0.5 + index * 0.15, duration: 0.4 }}
-                    >
-                      {feature.title}
-                    </motion.h3>
-                    
-                    {/* Description with fade-in */}
-                    <motion.p 
-                      className="text-muted-foreground text-sm leading-relaxed"
-                      initial={{ opacity: 0 }}
-                      animate={isInView ? { opacity: 1 } : {}}
-                      transition={{ delay: 0.6 + index * 0.15, duration: 0.5 }}
-                    >
-                      {feature.description}
-                    </motion.p>
-                  </div>
+                {/* Counter badge */}
+                <div className="mb-2">
+                  <Counter value={feature.value} suffix={feature.suffix} />
                 </div>
-              </motion.div>
+
+                {/* Title */}
+                <h3 className="text-xs sm:text-sm md:text-base font-semibold text-foreground leading-tight">
+                  {feature.title}
+                </h3>
+              </div>
             </motion.div>
           ))}
         </motion.div>
