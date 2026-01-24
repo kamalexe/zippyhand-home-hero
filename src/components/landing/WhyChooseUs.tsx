@@ -105,54 +105,137 @@ const WhyChooseUs = () => {
         </motion.div>
 
         {/* Features Grid - 2x2 */}
-        <div className="grid md:grid-cols-2 gap-6 md:gap-8 max-w-5xl mx-auto">
+        <motion.div 
+          className="grid md:grid-cols-2 gap-6 md:gap-8 max-w-5xl mx-auto"
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          variants={{
+            hidden: {},
+            visible: {
+              transition: {
+                staggerChildren: 0.15,
+                delayChildren: 0.2,
+              },
+            },
+          }}
+        >
           {features.map((feature, index) => (
             <motion.div
               key={feature.title}
-              initial={{ opacity: 0, y: 50 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.2 + index * 0.1, duration: 0.5 }}
-              whileHover={{ y: -8, scale: 1.02 }}
-              className="group"
+              variants={{
+                hidden: { 
+                  opacity: 0, 
+                  scale: 0.8,
+                  rotateX: 45,
+                  y: 60,
+                },
+                visible: { 
+                  opacity: 1, 
+                  scale: 1,
+                  rotateX: 0,
+                  y: 0,
+                  transition: {
+                    type: "spring",
+                    stiffness: 100,
+                    damping: 15,
+                    duration: 0.6,
+                  },
+                },
+              }}
+              whileHover={{ 
+                y: -10, 
+                scale: 1.03,
+                transition: { type: "spring", stiffness: 300 }
+              }}
+              className="group perspective-1000"
             >
-              <div className="bg-card border border-border rounded-2xl p-6 md:p-8 h-full shadow-sm hover:shadow-xl transition-all duration-300 relative overflow-hidden">
-                {/* Background glow on hover */}
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <motion.div 
+                className="bg-card border border-border rounded-2xl p-6 md:p-8 h-full shadow-sm hover:shadow-2xl transition-all duration-500 relative overflow-hidden"
+                initial={{ boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1)" }}
+                whileHover={{ 
+                  boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
+                }}
+              >
+                {/* Animated background gradient */}
+                <motion.div 
+                  className="absolute inset-0 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileHover={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.4 }}
+                />
+                
+                {/* Shimmer effect on hover */}
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12"
+                  initial={{ x: "-100%" }}
+                  whileHover={{ x: "200%" }}
+                  transition={{ duration: 0.8, ease: "easeInOut" }}
+                />
                 
                 <div className="relative z-10 flex flex-col md:flex-row items-center gap-6">
-                  {/* Image */}
+                  {/* Image with pop-in animation */}
                   <motion.div
                     className="w-32 h-32 md:w-36 md:h-36 rounded-2xl overflow-hidden bg-muted flex-shrink-0 shadow-lg"
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ duration: 0.3 }}
+                    initial={{ scale: 0, rotate: -10 }}
+                    animate={isInView ? { scale: 1, rotate: 0 } : {}}
+                    transition={{ 
+                      delay: 0.3 + index * 0.15, 
+                      type: "spring", 
+                      stiffness: 200,
+                      damping: 15 
+                    }}
+                    whileHover={{ 
+                      scale: 1.1, 
+                      rotate: 3,
+                      transition: { type: "spring", stiffness: 300 }
+                    }}
                   >
-                    <img
+                    <motion.img
                       src={feature.image}
                       alt={feature.title}
                       className="w-full h-full object-cover"
+                      whileHover={{ scale: 1.15 }}
+                      transition={{ duration: 0.4 }}
                     />
                   </motion.div>
 
-                  {/* Content */}
+                  {/* Content with staggered text reveal */}
                   <div className="text-center md:text-left flex-1">
-                    {/* Counter */}
-                    <div className="mb-2">
+                    {/* Counter with bounce */}
+                    <motion.div 
+                      className="mb-2"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={isInView ? { opacity: 1, y: 0 } : {}}
+                      transition={{ delay: 0.4 + index * 0.15, duration: 0.5 }}
+                    >
                       <Counter value={feature.value} suffix={feature.suffix} />
-                    </div>
+                    </motion.div>
 
-                    {/* Title & Description */}
-                    <h3 className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
+                    {/* Title with slide-up */}
+                    <motion.h3 
+                      className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors duration-300"
+                      initial={{ opacity: 0, y: 15 }}
+                      animate={isInView ? { opacity: 1, y: 0 } : {}}
+                      transition={{ delay: 0.5 + index * 0.15, duration: 0.4 }}
+                    >
                       {feature.title}
-                    </h3>
-                    <p className="text-muted-foreground text-sm leading-relaxed">
+                    </motion.h3>
+                    
+                    {/* Description with fade-in */}
+                    <motion.p 
+                      className="text-muted-foreground text-sm leading-relaxed"
+                      initial={{ opacity: 0 }}
+                      animate={isInView ? { opacity: 1 } : {}}
+                      transition={{ delay: 0.6 + index * 0.15, duration: 0.5 }}
+                    >
                       {feature.description}
-                    </p>
+                    </motion.p>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
