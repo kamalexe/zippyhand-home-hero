@@ -172,10 +172,10 @@ const WhyChooseUs = () => {
                   transition={{ duration: 0.8, ease: "easeInOut" }}
                 />
                 
-                <div className="relative z-10 flex flex-col md:flex-row items-center gap-6">
+                <div className="relative z-10 flex flex-col items-center text-center gap-4">
                   {/* Image with pop-in animation */}
                   <motion.div
-                    className="w-32 h-32 md:w-36 md:h-36 rounded-2xl overflow-hidden bg-muted flex-shrink-0 shadow-lg"
+                    className="w-28 h-28 md:w-32 md:h-32 rounded-2xl overflow-hidden bg-muted flex-shrink-0 shadow-lg"
                     initial={{ scale: 0, rotate: -10 }}
                     animate={isInView ? { scale: 1, rotate: 0 } : {}}
                     transition={{ 
@@ -199,8 +199,8 @@ const WhyChooseUs = () => {
                     />
                   </motion.div>
 
-                  {/* Content with staggered text reveal */}
-                  <div className="text-center md:text-left flex-1">
+                  {/* Content */}
+                  <div className="flex-1">
                     {/* Counter with bounce */}
                     <motion.div 
                       className="mb-2"
@@ -213,7 +213,7 @@ const WhyChooseUs = () => {
 
                     {/* Title with slide-up */}
                     <motion.h3 
-                      className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors duration-300"
+                      className="text-lg md:text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors duration-300"
                       initial={{ opacity: 0, y: 15 }}
                       animate={isInView ? { opacity: 1, y: 0 } : {}}
                       transition={{ delay: 0.5 + index * 0.15, duration: 0.4 }}
