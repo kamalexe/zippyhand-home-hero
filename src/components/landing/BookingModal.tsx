@@ -2,6 +2,7 @@ import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Calendar, Clock, MapPin, Phone, User, Wrench, CheckCircle, Tag } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { supabase } from "@/lib/supabase";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
@@ -53,6 +54,7 @@ const timeSlots = [
 const BookingModal = ({ isOpen, onClose, preSelectedService }: BookingModalProps) => {
   const { toast } = useToast();
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -79,14 +81,43 @@ const BookingModal = ({ isOpen, onClose, preSelectedService }: BookingModalProps
     return dates;
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Simulate form submission
-    setIsSubmitted(true);
-    toast({
-      title: "Booking Confirmed! 🎉",
-      description: "Our team will call you shortly to confirm the details.",
-    });
+    setIsSubmitting(true);
+
+    try {
+      const { error } = await supabase
+        .from('bookings')
+        .insert([
+          {
+            name: formData.name,
+            phone: formData.phone,
+            service: formData.service,
+            brand: formData.brand,
+            date: formData.date,
+            time_slot: formData.timeSlot,
+            address: formData.address,
+            landmark: formData.landmark,
+          }
+        ]);
+
+      if (error) throw error;
+
+      setIsSubmitted(true);
+      toast({
+        title: "Booking Confirmed! 🎉",
+        description: "Our team will call you shortly to confirm the details.",
+      });
+    } catch (error: any) {
+      console.error('Booking error:', error);
+      toast({
+        title: "Booking Failed",
+        description: error.message || "Something went wrong. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleClose = () => {
@@ -344,8 +375,9 @@ const BookingModal = ({ isOpen, onClose, preSelectedService }: BookingModalProps
                     type="submit"
                     size="lg"
                     className="w-full rounded-xl text-lg py-6 mt-4"
+                      disabled={isSubmitting}
                   >
-                    Confirm Booking
+                      {isSubmitting ? "Confirming..." : "Confirm Booking"}
                   </Button>
 
                   <p className="text-xs text-center text-muted-foreground">

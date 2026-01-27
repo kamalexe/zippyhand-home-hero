@@ -2,59 +2,38 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Snowflake, Wrench, Droplets, Wind, WashingMachine, GlassWater, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "@/lib/supabase";
 
 interface ServicesProps {
   onBookService: (service?: string) => void;
 }
 
-const services = [
-  {
-    icon: Wrench,
-    title: "AC Repair & Maintenance",
-    description: "Complete cooling solutions - noise issues, cooling problems, and regular maintenance",
-    price: "Starting ₹299",
-    popular: true,
-  },
-  {
-    icon: Snowflake,
-    title: "AC Installation / Uninstallation",
-    description: "Safe and professional AC setup or removal with proper handling",
-    price: "Starting ₹499",
-    popular: false,
-  },
-  {
-    icon: Droplets,
-    title: "Fix AC Water Leaking",
-    description: "Stop annoying drips and water damage with expert leak repairs",
-    price: "Starting ₹249",
-    popular: false,
-  },
-  {
-    icon: Wind,
-    title: "AC Gas Charging",
-    description: "Restore your AC's cooling efficiency with proper refrigerant refill",
-    price: "Starting ₹1,499",
-    popular: true,
-  },
-  {
-    icon: WashingMachine,
-    title: "Washing Machine Repair",
-    description: "All brands serviced - drum issues, motor problems, and more",
-    price: "Starting ₹349",
-    popular: false,
-  },
-  {
-    icon: GlassWater,
-    title: "RO Repair & Service",
-    description: "Ensure pure drinking water with filter replacement and repairs",
-    price: "Starting ₹199",
-    popular: false,
-  },
-];
+const iconMap: Record<string, any> = {
+  Wrench,
+  Snowflake,
+  Droplets,
+  Wind,
+  WashingMachine,
+  GlassWater,
+};
 
 const Services = ({ onBookService }: ServicesProps) => {
   const containerRef = useRef(null);
   const isInView = useInView(containerRef, { once: true, margin: "-100px" });
+
+  const { data: services = [], isLoading } = useQuery({
+    queryKey: ['services'],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from('services')
+        .select('*')
+        .order('id');
+
+      if (error) throw error;
+      return data;
+    },
+  });
 
   return (
     <section id="services" className="py-20 md:py-28 bg-secondary/30 relative overflow-hidden">
@@ -90,58 +69,65 @@ const Services = ({ onBookService }: ServicesProps) => {
 
         {/* Services Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {services.map((service, index) => (
-            <motion.div
-              key={service.title}
-              initial={{ opacity: 0, y: 50 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.1 + index * 0.1, duration: 0.5 }}
-              whileHover={{ y: -8 }}
-              className="group relative"
-            >
-              <div className="bg-card border border-border rounded-2xl p-6 md:p-8 h-full shadow-sm hover:shadow-xl transition-all duration-300 relative overflow-hidden">
-                {/* Popular Badge */}
-                {service.popular && (
-                  <div className="absolute top-4 right-4">
-                    <span className="bg-primary text-primary-foreground text-xs font-semibold px-3 py-1 rounded-full">
-                      Popular
-                    </span>
-                  </div>
-                )}
-
-                {/* Icon */}
+          {isLoading ? (
+            <div className="col-span-full text-center py-10">Loading services...</div>
+          ) : (
+            services.map((service, index) => {
+              const IconComponent = iconMap[service.icon] || Wrench;
+              return (
                 <motion.div
-                  className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary transition-colors duration-300"
-                  whileHover={{ rotate: 360 }}
-                  transition={{ duration: 0.6 }}
+                  key={service.id || service.title}
+                  initial={{ opacity: 0, y: 50 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ delay: 0.1 + index * 0.1, duration: 0.5 }}
+                  whileHover={{ y: -8 }}
+                  className="group relative"
                 >
-                  <service.icon className="w-8 h-8 text-primary group-hover:text-primary-foreground transition-colors duration-300" />
+                  <div className="bg-card border border-border rounded-2xl p-6 md:p-8 h-full shadow-sm hover:shadow-xl transition-all duration-300 relative overflow-hidden">
+                    {/* Popular Badge */}
+                    {service.popular && (
+                      <div className="absolute top-4 right-4">
+                        <span className="bg-primary text-primary-foreground text-xs font-semibold px-3 py-1 rounded-full">
+                          Popular
+                        </span>
+                      </div>
+                    )}
+
+                    {/* Icon */}
+                    <motion.div
+                      className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary transition-colors duration-300"
+                      whileHover={{ rotate: 360 }}
+                      transition={{ duration: 0.6 }}
+                    >
+                      <IconComponent className="w-8 h-8 text-primary group-hover:text-primary-foreground transition-colors duration-300" />
+                    </motion.div>
+
+                    {/* Content */}
+                    <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors">
+                      {service.title}
+                    </h3>
+                    <p className="text-muted-foreground text-sm leading-relaxed mb-4">
+                      {service.description}
+                    </p>
+
+                    {/* Price & CTA */}
+                    <div className="flex items-center justify-between mt-auto pt-4 border-t border-border">
+                      <span className="text-lg font-semibold text-primary">{service.price}</span>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="text-primary hover:bg-primary hover:text-primary-foreground group/btn"
+                        onClick={() => onBookService(service.title)}
+                      >
+                        Book Now
+                        <ArrowRight className="w-4 h-4 ml-1 group-hover/btn:translate-x-1 transition-transform" />
+                      </Button>
+                    </div>
+                  </div>
                 </motion.div>
-
-                {/* Content */}
-                <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors">
-                  {service.title}
-                </h3>
-                <p className="text-muted-foreground text-sm leading-relaxed mb-4">
-                  {service.description}
-                </p>
-
-                {/* Price & CTA */}
-                <div className="flex items-center justify-between mt-auto pt-4 border-t border-border">
-                  <span className="text-lg font-semibold text-primary">{service.price}</span>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="text-primary hover:bg-primary hover:text-primary-foreground group/btn"
-                    onClick={() => onBookService(service.title)}
-                  >
-                    Book Now
-                    <ArrowRight className="w-4 h-4 ml-1 group-hover/btn:translate-x-1 transition-transform" />
-                  </Button>
-                </div>
-              </div>
-            </motion.div>
-          ))}
+              );
+            })
+          )}
         </div>
 
         {/* View All CTA */}
