@@ -179,8 +179,8 @@ const Admin = () => {
         }
     };
 
-    const handleLogout = () => {
-        localStorage.removeItem("admin_session");
+    const handleLogout = async () => {
+        await supabase.auth.signOut();
         navigate("/login");
     };
 

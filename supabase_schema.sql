@@ -33,26 +33,26 @@ drop policy if exists "Public services select" on services;
 create policy "Public services select" on services for select using (true);
 
 drop policy if exists "Admin services insert" on services;
-create policy "Admin services insert" on services for insert with check (true);
+create policy "Admin services insert" on services for insert with check (auth.role() = 'authenticated');
 
 drop policy if exists "Admin services update" on services;
-create policy "Admin services update" on services for update using (true);
+create policy "Admin services update" on services for update using (auth.role() = 'authenticated');
 
 drop policy if exists "Admin services delete" on services;
-create policy "Admin services delete" on services for delete using (true);
+create policy "Admin services delete" on services for delete using (auth.role() = 'authenticated');
 
 -- Policies for bookings
 drop policy if exists "Public bookings insert" on bookings;
 create policy "Public bookings insert" on bookings for insert with check (true);
 
 drop policy if exists "Admin bookings select" on bookings;
-create policy "Admin bookings select" on bookings for select using (true);
+create policy "Admin bookings select" on bookings for select using (auth.role() = 'authenticated');
 
 drop policy if exists "Admin bookings update" on bookings;
-create policy "Admin bookings update" on bookings for update using (true);
+create policy "Admin bookings update" on bookings for update using (auth.role() = 'authenticated');
 
 drop policy if exists "Admin bookings delete" on bookings;
-create policy "Admin bookings delete" on bookings for delete using (true);
+create policy "Admin bookings delete" on bookings for delete using (auth.role() = 'authenticated');
 
 -- Insert default services (Extended)
 insert into services (title, description, price, popular, icon) values

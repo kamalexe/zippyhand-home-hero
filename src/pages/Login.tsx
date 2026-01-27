@@ -1,39 +1,47 @@
 
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { supabase } from "@/lib/supabase";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
-import { ShieldCheck, Lock } from "lucide-react";
+import { ShieldCheck, Lock, Mail } from "lucide-react";
 
 const Login = () => {
-  const [secret, setSecret] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const { toast } = useToast();
 
-  const handleLogin = (e: React.FormEvent) => {
+    const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
 
-    // Simple hardcoded secret for now
-    if (secret === "admin123") {
-      localStorage.setItem("admin_session", "true");
+      try {
+          const { error } = await supabase.auth.signInWithPassword({
+              email,
+              password,
+          });
+
+          if (error) throw error;
+
       toast({
         title: "Login Successful",
         description: "Welcome back, Admin!",
       });
       navigate("/admin");
-    } else {
+    } catch (error: any) {
       toast({
-        title: "Access Denied",
-        description: "Invalid admin secret key.",
+          title: "Login Failed",
+          description: error.message || "Invalid credentials. Please check your email and password.",
         variant: "destructive",
       });
+    } finally {
+        setIsLoading(false);
     }
-    setIsLoading(false);
   };
 
   return (
@@ -49,22 +57,39 @@ const Login = () => {
               <ShieldCheck className="w-10 h-10" />
             </div>
           </div>
-          <CardTitle className="text-2xl font-bold tracking-tight">Admin Portal</CardTitle>
+                  <CardTitle className="text-2xl font-bold tracking-tight text-slate-900">Admin Portal</CardTitle>
           <CardDescription>
-            Enter your secret key to access the management dashboard
+                      Enter your email and password to access the management dashboard
           </CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleLogin} className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="secret">Admin Secret Key</Label>
+                          <Label htmlFor="email">Email Address</Label>
+                          <div className="relative">
+                              <Input
+                                  id="email"
+                                  type="email"
+                                  placeholder="admin@example.com"
+                                  value={email}
+                                  onChange={(e) => setEmail(e.target.value)}
+                                  className="pl-10"
+                                  required
+                              />
+                              <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                          </div>
+                      </div>
+                      <div className="space-y-2">
+                          <div className="flex items-center justify-between">
+                              <Label htmlFor="password">Password</Label>
+                          </div>
               <div className="relative">
                 <Input
-                  id="secret"
+                                  id="password"
                   type="password"
                   placeholder="••••••••"
-                  value={secret}
-                  onChange={(e) => setSecret(e.target.value)}
+                                  value={password}
+                                  onChange={(e) => setPassword(e.target.value)}
                   className="pl-10"
                   required
                 />
@@ -72,7 +97,7 @@ const Login = () => {
               </div>
             </div>
             <Button className="w-full h-11 font-semibold" type="submit" disabled={isLoading}>
-              {isLoading ? "Verifying..." : "Access Dashboard"}
+                          {isLoading ? "Signing in..." : "Login to Dashboard"}
             </Button>
           </form>
         </CardContent>
