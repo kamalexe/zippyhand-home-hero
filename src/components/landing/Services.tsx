@@ -25,12 +25,17 @@ const Services = ({ onBookService }: ServicesProps) => {
   const { data: services = [], isLoading } = useQuery({
     queryKey: ['services'],
     queryFn: async () => {
+      console.log('Fetching services from Supabase...');
       const { data, error } = await supabase
         .from('services')
         .select('*')
         .order('id');
 
-      if (error) throw error;
+      if (error) {
+        console.error('Supabase error fetching services:', error);
+        throw error;
+      }
+      console.log('Services fetched successfully:', data);
       return data;
     },
   });
