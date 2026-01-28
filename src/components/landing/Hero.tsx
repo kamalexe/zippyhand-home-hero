@@ -56,30 +56,27 @@ const Hero = ({ onBookService }: HeroProps) => {
   return (
     <section id="hero" className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-secondary via-background to-accent pt-20">
       {/* Background decorative elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      <div className="absolute inset-0 overflow-hidden">
         <motion.div
-          className="absolute top-20 left-10 w-72 h-72 bg-primary/10 rounded-full blur-2xl md:blur-3xl"
-          animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.4, 0.3] }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-          style={{ willChange: "transform, opacity" }}
+          className="absolute top-20 left-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl"
+          animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         />
         <motion.div
-          className="absolute bottom-20 right-10 w-96 h-96 bg-primary/5 rounded-full blur-2xl md:blur-3xl"
-          animate={{ scale: [1.1, 1, 1.1], opacity: [0.2, 0.3, 0.2] }}
-          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-          style={{ willChange: "transform, opacity" }}
+          className="absolute bottom-20 right-10 w-96 h-96 bg-primary/5 rounded-full blur-3xl"
+          animate={{ scale: [1.2, 1, 1.2], opacity: [0.2, 0.4, 0.2] }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
         />
       </div>
 
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-4 relative z-10 mt-12 lg:mt-0">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Left Content */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }} // Reduced distance for smoother mobile entry
+            initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="text-center lg:text-left order-2 lg:order-1"
-            style={{ willChange: "opacity, transform" }}
+            className="text-center lg:text-left order-2 lg:order-1 mt-[38px] lg:mt-0"
           >
             {/* Location Badge */}
             <motion.div
@@ -89,7 +86,7 @@ const Hero = ({ onBookService }: HeroProps) => {
               className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-6"
             >
               <MapPin className="w-4 h-4" />
-              Now Serving in Gaya
+              Now Serving in Bangalore
             </motion.div>
 
             <motion.h1
@@ -192,16 +189,14 @@ const Hero = ({ onBookService }: HeroProps) => {
               <motion.div
                 className="absolute inset-0 m-auto w-[90%] h-[90%] bg-gradient-to-br from-primary/10 via-primary/5 to-transparent rounded-full"
                 animate={{ rotate: 360 }}
-                transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-                style={{ willChange: "transform" }}
+                transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
               />
               
-              {/* Decorative rings - Hidden on mobile for performance */}
+              {/* Decorative rings */}
               <motion.div
-                className="absolute inset-0 m-auto w-[95%] h-[95%] border-2 border-dashed border-primary/20 rounded-full hidden md:block"
+                className="absolute inset-0 m-auto w-[95%] h-[95%] border-2 border-dashed border-primary/20 rounded-full"
                 animate={{ rotate: -360 }}
-                transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
-                style={{ willChange: "transform" }}
+                transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
               />
 
               {/* Image carousel */}
@@ -209,26 +204,24 @@ const Hero = ({ onBookService }: HeroProps) => {
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={currentSlide}
-                    initial={{ opacity: 0, scale: 0.9, y: 20 }} // Gentler animation for mobile
+                    initial={{ opacity: 0, scale: 0.8, y: 50 }}
                     animate={{ opacity: 1, scale: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 0.9, y: -20 }}
-                    transition={{ duration: 0.5, ease: "easeOut" }}
+                    exit={{ opacity: 0, scale: 0.8, y: -50 }}
+                    transition={{ duration: 0.6, ease: "easeOut" }}
                     className="absolute inset-0 flex items-center justify-center"
-                    style={{ willChange: "opacity, transform" }}
                   >
                     <motion.img
                       src={services[currentSlide].image}
                       alt={services[currentSlide].title}
-                      className="w-[85%] h-[85%] object-contain drop-shadow-xl md:drop-shadow-2xl"
+                      className="w-[85%] h-[85%] object-contain drop-shadow-2xl"
                       animate={{ 
-                        y: [0, -8, 0],
+                        y: [0, -10, 0],
                       }}
                       transition={{ 
-                        duration: 4, 
+                        duration: 3, 
                         repeat: Infinity, 
                         ease: "easeInOut" 
                       }}
-                      style={{ willChange: "transform" }}
                     />
                   </motion.div>
                 </AnimatePresence>
