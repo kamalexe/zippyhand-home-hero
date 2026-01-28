@@ -65,11 +65,11 @@ const Footer = () => {
                 <span>+91 87870 40661</span>
               </a>
               <a
-                href="mailto:hello@zippyhand.com"
+                href="mailto:iota.build@gmail.com"
                 className="flex items-center gap-3 text-background/70 hover:text-primary transition-colors"
               >
                 <Mail className="w-5 h-5" />
-                <span>hello@zippyhand.com</span>
+                <span>iota.build@gmail.com</span>
               </a>
               <div className="flex items-start gap-3 text-background/70">
                 <MapPin className="w-5 h-5 flex-shrink-0 mt-0.5" />
