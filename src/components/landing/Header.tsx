@@ -142,7 +142,7 @@ const Header = ({ onBookService }: HeaderProps) => {
               >
                 <Phone className="w-4 h-4" />
               </motion.div>
-              <span className="text-sm font-medium">+91 98765 43210</span>
+              <span className="text-sm font-medium">+91 87870 40661</span>
             </motion.a>
             
             <motion.div
@@ -238,7 +238,7 @@ const Header = ({ onBookService }: HeaderProps) => {
                     className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors px-4 py-2"
                   >
                     <Phone className="w-4 h-4" />
-                    <span className="text-sm font-medium">+91 98765 43210</span>
+                    <span className="text-sm font-medium">+91 87870 40661</span>
                   </a>
                   <Button 
                     onClick={onBookService} 

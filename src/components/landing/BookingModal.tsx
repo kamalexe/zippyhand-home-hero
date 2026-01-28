@@ -346,7 +346,7 @@ const BookingModal = ({ isOpen, onClose, preSelectedService }: BookingModalProps
                   <div className="space-y-2">
                     <Label htmlFor="address" className="flex items-center gap-2">
                       <MapPin className="w-4 h-4 text-primary" />
-                      Address in Bangalore
+                      Address in Gaya
                     </Label>
                     <Input
                       id="address"

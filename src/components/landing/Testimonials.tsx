@@ -7,7 +7,7 @@ const testimonials = [
   {
     id: 1,
     name: "Priya Sharma",
-    location: "Koramangala, Bangalore",
+    location: "Koramangala, Gaya",
     service: "AC Repair",
     rating: 5,
     image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=face",
@@ -16,7 +16,7 @@ const testimonials = [
   {
     id: 2,
     name: "Rajesh Kumar",
-    location: "Whitefield, Bangalore",
+    location: "Whitefield, Gaya",
     service: "Washing Machine Repair",
     rating: 5,
     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face",
@@ -25,7 +25,7 @@ const testimonials = [
   {
     id: 3,
     name: "Ananya Reddy",
-    location: "Indiranagar, Bangalore",
+    location: "Indiranagar, Gaya",
     service: "RO Service",
     rating: 5,
     image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face",
@@ -34,7 +34,7 @@ const testimonials = [
   {
     id: 4,
     name: "Vikram Patel",
-    location: "HSR Layout, Bangalore",
+    location: "HSR Layout, Gaya",
     service: "AC Gas Charging",
     rating: 4,
     image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face",
@@ -81,7 +81,7 @@ const Testimonials = () => {
             What Our <span className="text-primary">Customers</span> Say
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Real stories from real Bangalore families who trust ZippyHand for their home repairs.
+            Real stories from real Gaya families who trust ZippyHand for their home repairs.
           </p>
         </motion.div>
 

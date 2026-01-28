@@ -52,7 +52,7 @@ const Footer = () => {
               </span>
             </motion.a>
             <p className="text-background/70 mb-6 max-w-sm leading-relaxed">
-              Your trusted partner for home appliance repairs in Bangalore. 
+              Your trusted partner for home appliance repairs in Gaya. 
               Fast, reliable, and backed by our 90-day warranty.
             </p>
             {/* Contact Info */}
@@ -62,7 +62,7 @@ const Footer = () => {
                 className="flex items-center gap-3 text-background/70 hover:text-primary transition-colors"
               >
                 <Phone className="w-5 h-5" />
-                <span>+91 98765 43210</span>
+                <span>+91 87870 40661</span>
               </a>
               <a
                 href="mailto:hello@zippyhand.com"
@@ -73,7 +73,7 @@ const Footer = () => {
               </a>
               <div className="flex items-start gap-3 text-background/70">
                 <MapPin className="w-5 h-5 flex-shrink-0 mt-0.5" />
-                <span>Bangalore, Karnataka, India</span>
+                <span>Gaya, Bihar, India</span>
               </div>
             </div>
           </div>

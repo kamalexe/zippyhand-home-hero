@@ -30,7 +30,7 @@ const features = [
   {
     image: happyCustomersImg,
     title: "Trusted by Many",
-    description: "Join our growing family of happy customers across Bangalore",
+    description: "Join our growing family of happy customers across Gaya",
     value: "500",
     suffix: "+",
   },
