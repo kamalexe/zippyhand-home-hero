@@ -148,14 +148,16 @@ const BookingModal = ({ isOpen, onClose, preSelectedService }: BookingModalProps
             className="fixed inset-0 bg-foreground/60 backdrop-blur-sm z-50"
           />
 
-          {/* Modal */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
-            className="fixed inset-4 md:inset-auto md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:w-full md:max-w-lg bg-card rounded-2xl shadow-2xl z-50 overflow-hidden"
-          >
+          {/* Modal Container */}
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto pointer-events-none">
+            {/* Modal */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+              className="w-full max-w-lg bg-card rounded-2xl shadow-2xl overflow-hidden pointer-events-auto my-auto"
+            >
             {/* Header */}
             <div className="bg-primary px-6 py-5 relative">
               <button
@@ -387,6 +389,7 @@ const BookingModal = ({ isOpen, onClose, preSelectedService }: BookingModalProps
               )}
             </div>
           </motion.div>
+          </div>
         </>
       )}
     </AnimatePresence>

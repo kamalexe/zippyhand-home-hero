@@ -131,7 +131,7 @@ const Header = ({ onBookService }: HeaderProps) => {
           {/* CTA Buttons */}
           <div className="hidden md:flex items-center gap-3">
             <motion.a
-              href="tel:+919876543210"
+              href="tel:+918787040661"
               className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
