@@ -56,15 +56,15 @@ const Hero = ({ onBookService }: HeroProps) => {
   return (
     <section id="hero" className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-secondary via-background to-accent pt-20">
       {/* Background decorative elements */}
-      <div className="absolute inset-0 overflow-hidden">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
-          className="absolute top-20 left-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl"
-          animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
+          className="absolute top-20 left-10 w-72 h-72 bg-primary/10 rounded-full blur-2xl md:blur-3xl will-change-transform"
+          animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.4, 0.3] }}
           transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         />
         <motion.div
-          className="absolute bottom-20 right-10 w-96 h-96 bg-primary/5 rounded-full blur-3xl"
-          animate={{ scale: [1.2, 1, 1.2], opacity: [0.2, 0.4, 0.2] }}
+          className="absolute bottom-20 right-10 w-96 h-96 bg-primary/5 rounded-full blur-2xl md:blur-3xl will-change-transform"
+          animate={{ scale: [1.1, 1, 1.1], opacity: [0.2, 0.3, 0.2] }}
           transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
         />
       </div>
@@ -86,7 +86,7 @@ const Hero = ({ onBookService }: HeroProps) => {
               className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-6"
             >
               <MapPin className="w-4 h-4" />
-              Now Serving in Bangalore
+              Now Serving in Gaya
             </motion.div>
 
             <motion.h1
@@ -187,16 +187,16 @@ const Hero = ({ onBookService }: HeroProps) => {
             <div className="relative w-full aspect-square max-w-md mx-auto">
               {/* Animated background circle */}
               <motion.div
-                className="absolute inset-0 m-auto w-[90%] h-[90%] bg-gradient-to-br from-primary/10 via-primary/5 to-transparent rounded-full"
+                className="absolute inset-0 m-auto w-[90%] h-[90%] bg-gradient-to-br from-primary/10 via-primary/5 to-transparent rounded-full will-change-transform"
                 animate={{ rotate: 360 }}
-                transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+                transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
               />
               
               {/* Decorative rings */}
               <motion.div
-                className="absolute inset-0 m-auto w-[95%] h-[95%] border-2 border-dashed border-primary/20 rounded-full"
+                className="absolute inset-0 m-auto w-[95%] h-[95%] border-2 border-dashed border-primary/20 rounded-full will-change-transform"
                 animate={{ rotate: -360 }}
-                transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+                transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
               />
 
               {/* Image carousel */}
@@ -213,12 +213,12 @@ const Hero = ({ onBookService }: HeroProps) => {
                     <motion.img
                       src={services[currentSlide].image}
                       alt={services[currentSlide].title}
-                      className="w-[85%] h-[85%] object-contain drop-shadow-2xl"
+                      className="w-[85%] h-[85%] object-contain drop-shadow-2xl will-change-transform"
                       animate={{ 
-                        y: [0, -10, 0],
+                        y: [0, -8, 0],
                       }}
                       transition={{ 
-                        duration: 3, 
+                        duration: 4, 
                         repeat: Infinity, 
                         ease: "easeInOut" 
                       }}
