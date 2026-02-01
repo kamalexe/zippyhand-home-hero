@@ -22,8 +22,10 @@ const SEO = ({ title, description, keywords, image, url, schema }: SEOProps) => 
         <Helmet>
             {/* Standard Metadata */}
             <title>{title} | FixKro</title>
+            <meta name="title" content={`${title} | FixKro`} />
             <meta name="description" content={description || defaultDescription} />
             {keywords && <meta name="keywords" content={keywords} />}
+            <link rel="canonical" href={url || defaultUrl} />
 
             {/* Open Graph / Facebook */}
             <meta property="og:type" content="website" />
