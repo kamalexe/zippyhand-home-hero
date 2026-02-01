@@ -10,7 +10,7 @@ interface SEOProps {
 }
 
 const SEO = ({ title, description, keywords, image, url, schema }: SEOProps) => {
-    const siteTitle = "ZippyHand - Home Appliance Repair Services in Gaya";
+    const siteTitle = "FixKro - Home Appliance Repair Services in Gaya";
     const defaultDescription = "Expert home appliance repair services in Gaya. AC repair, washing machine repair, RO service with 90-day warranty & 45-min response time. Book now!";
     const defaultImage = "/icon.png";
     const defaultUrl = window.location.origin;
@@ -21,7 +21,7 @@ const SEO = ({ title, description, keywords, image, url, schema }: SEOProps) => 
     return (
         <Helmet>
             {/* Standard Metadata */}
-            <title>{title} | ZippyHand</title>
+            <title>{title} | FixKro</title>
             <meta name="description" content={description || defaultDescription} />
             {keywords && <meta name="keywords" content={keywords} />}
 

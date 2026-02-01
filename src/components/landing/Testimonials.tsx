@@ -11,7 +11,7 @@ const testimonials = [
     service: "AC Repair",
     rating: 5,
     image: "https://st2.depositphotos.com/5765702/9403/i/950/depositphotos_94037688-stock-photo-young-traditional-indian-woman-with.jpg",
-    review: "The technician arrived within 30 minutes and fixed my AC in no time. Very professional service! My family was suffering in the heat, and ZippyHand saved us.",
+    review: "The technician arrived within 30 minutes and fixed my AC in no time. Very professional service! My family was suffering in the heat, and FixKro saved us.",
   },
   {
     id: 2,
@@ -29,7 +29,7 @@ const testimonials = [
     service: "RO Service",
     rating: 5,
     image: "https://st2.depositphotos.com/4761309/7145/i/950/depositphotos_71451275-stock-photo-traditional-indian-woman.jpg",
-    review: "Quick response and affordable pricing. The technician replaced my RO filters and explained everything clearly. Highly recommend ZippyHand!",
+    review: "Quick response and affordable pricing. The technician replaced my RO filters and explained everything clearly. Highly recommend FixKro!",
   },
   {
     id: 4,
@@ -81,7 +81,7 @@ const Testimonials = () => {
             What Our <span className="text-primary">Customers</span> Say
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Real stories from real Gaya families who trust ZippyHand for their home repairs.
+            Real stories from real Gaya families who trust FixKro for their home repairs.
           </p>
         </motion.div>
 

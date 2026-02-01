@@ -86,7 +86,7 @@ const WhyChooseUs = () => {
           className="text-center mb-10 md:mb-14"
         >
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground">
-            WHY CHOOSE <span className="text-primary">ZIPPYHAND</span>
+            WHY CHOOSE <span className="text-primary">FIXKRO</span>
           </h2>
         </motion.div>
 

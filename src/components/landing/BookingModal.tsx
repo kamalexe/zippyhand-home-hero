@@ -192,7 +192,7 @@ const BookingModal = ({ isOpen, onClose, preSelectedService }: BookingModalProps
                     Booking Confirmed!
                   </h3>
                   <p className="text-muted-foreground mb-6">
-                    Thank you for choosing ZippyHand. Our team will call you within 15 minutes to confirm your booking.
+                      Thank you for choosing FixKro. Our team will call you within 15 minutes to confirm your booking.
                   </p>
                   <Button onClick={handleClose} className="rounded-full px-8">
                     Done

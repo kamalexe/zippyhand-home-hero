@@ -49,7 +49,7 @@ const Login = () => {
     <div className="min-h-screen w-full flex items-center justify-center bg-slate-50 relative overflow-hidden">
       <SEO
         title="Admin Login"
-        description="Login to ZippyHand Admin Portal to manage services and appointments."
+        description="Login to FixKro Admin Portal to manage services and appointments."
       />
       {/* Background Decor */}
       <div className="absolute top-0 -left-4 w-72 h-72 bg-primary/10 rounded-full blur-3xl animate-pulse" />

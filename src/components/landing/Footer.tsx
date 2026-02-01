@@ -48,7 +48,7 @@ const Footer = () => {
                 <Zap className="w-6 h-6 text-primary-foreground" />
               </div>
               <span className="text-2xl font-bold">
-                Zippy<span className="text-primary">Hand</span>
+                Fix<span className="text-primary">Kro</span>
               </span>
             </motion.a>
             <p className="text-background/70 mb-6 max-w-sm leading-relaxed">
@@ -136,7 +136,7 @@ const Footer = () => {
         <div className="container mx-auto px-4 py-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-background/60 text-sm">
-              © {currentYear} ZippyHand. All rights reserved.
+              © {currentYear} FixKro. All rights reserved.
             </p>
 
             {/* Social Links */}

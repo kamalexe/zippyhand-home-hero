@@ -84,7 +84,7 @@ const Header = ({ onBookService }: HeaderProps) => {
               />
             </motion.div>
             <span className="text-xl md:text-2xl font-bold text-foreground">
-              Zippy<span className="text-primary group-hover:text-primary/80 transition-colors">Hand</span>
+              Fix<span className="text-primary group-hover:text-primary/80 transition-colors">Kro</span>
             </span>
           </motion.a>
 

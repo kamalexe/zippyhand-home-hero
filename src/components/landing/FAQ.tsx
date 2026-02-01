@@ -9,7 +9,7 @@ import {
 
 const faqs = [
   {
-    question: "How do I book a service with ZippyHand?",
+    question: "How do I book a service with FixKro?",
     answer:
       "Booking is super easy! Just click the 'Book Service' button, select your appliance and issue, choose a convenient time slot, and provide your address. Our team will confirm your booking within minutes.",
   },

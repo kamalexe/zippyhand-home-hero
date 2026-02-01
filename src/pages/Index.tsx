@@ -21,7 +21,7 @@ const Index = () => {
   const localBusinessSchema = {
     "@context": "https://schema.org",
     "@type": "HomeAndConstructionBusiness",
-    "name": "ZippyHand",
+    "name": "FixKro",
     "image": "https://www.fixkro.in/icon.png",
     "description": "Expert home appliance repair services in Gaya. AC, Washing Machine, RO repair with 90-day warranty.",
     "address": {
@@ -54,7 +54,7 @@ const Index = () => {
       <SEO
         title="Home"
         description="Expert home appliance repair services in Gaya. AC, Washing Machine, RO repair with 90-day warranty. Book top-rated technicians now!"
-        keywords="AC repair Gaya, washing machine repair Gaya, RO service Gaya, appliance repair, ZippyHand"
+        keywords="AC repair Gaya, washing machine repair Gaya, RO service Gaya, appliance repair, FixKro"
         schema={localBusinessSchema}
       />
       <Header onBookService={() => handleBookService()} />
