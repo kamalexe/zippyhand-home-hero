@@ -137,9 +137,9 @@ const Testimonials = () => {
 
                 {/* Author */}
                 <div>
-                  <h4 className="text-lg font-bold text-foreground">
+                  <h3 className="text-lg font-bold text-foreground">
                     {testimonials[currentIndex].name}
-                  </h4>
+                  </h3>
                   <p className="text-muted-foreground text-sm">
                     {testimonials[currentIndex].location}
                   </p>

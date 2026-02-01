@@ -6,9 +6,10 @@ interface SEOProps {
     keywords?: string;
     image?: string;
     url?: string;
+    schema?: Record<string, any>;
 }
 
-const SEO = ({ title, description, keywords, image, url }: SEOProps) => {
+const SEO = ({ title, description, keywords, image, url, schema }: SEOProps) => {
     const siteTitle = "ZippyHand - Home Appliance Repair Services in Gaya";
     const defaultDescription = "Expert home appliance repair services in Gaya. AC repair, washing machine repair, RO service with 90-day warranty & 45-min response time. Book now!";
     const defaultImage = "/icon.png";
@@ -34,6 +35,13 @@ const SEO = ({ title, description, keywords, image, url }: SEOProps) => {
             <meta name="twitter:title" content={title || siteTitle} />
             <meta name="twitter:description" content={description || defaultDescription} />
             <meta name="twitter:image" content={image || defaultImage} />
+
+            {/* JSON-LD Schema */}
+            {schema && (
+                <script type="application/ld+json">
+                    {JSON.stringify(schema)}
+                </script>
+            )}
         </Helmet>
     );
 };
