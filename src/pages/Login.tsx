@@ -8,6 +8,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { ShieldCheck, Lock, Mail } from "lucide-react";
+import SEO from "@/components/SEO";
 
 const Login = () => {
     const [email, setEmail] = useState("");
@@ -46,6 +47,10 @@ const Login = () => {
 
   return (
     <div className="min-h-screen w-full flex items-center justify-center bg-slate-50 relative overflow-hidden">
+      <SEO
+        title="Admin Login"
+        description="Login to ZippyHand Admin Portal to manage services and appointments."
+      />
       {/* Background Decor */}
       <div className="absolute top-0 -left-4 w-72 h-72 bg-primary/10 rounded-full blur-3xl animate-pulse" />
       <div className="absolute bottom-0 -right-4 w-72 h-72 bg-blue-400/10 rounded-full blur-3xl animate-pulse delay-700" />
