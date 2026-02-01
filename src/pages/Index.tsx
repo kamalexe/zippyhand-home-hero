@@ -22,7 +22,7 @@ const Index = () => {
     "@context": "https://schema.org",
     "@type": "HomeAndConstructionBusiness",
     "name": "ZippyHand",
-    "image": "https://zippyhand.com/icon.png",
+    "image": "https://www.fixkro.in/icon.png",
     "description": "Expert home appliance repair services in Gaya. AC, Washing Machine, RO repair with 90-day warranty.",
     "address": {
       "@type": "PostalAddress",
@@ -30,7 +30,7 @@ const Index = () => {
       "addressRegion": "Bihar",
       "addressCountry": "IN"
     },
-    "url": "https://zippyhand.com",
+    "url": "https://www.fixkro.in",
     "telephone": "+91-1234567890", // Replace with actual number
     "priceRange": "₹₹",
     "openingHoursSpecification": {

@@ -15,6 +15,9 @@ const SEO = ({ title, description, keywords, image, url, schema }: SEOProps) => 
     const defaultImage = "/icon.png";
     const defaultUrl = window.location.origin;
 
+    // Ensure image is absolute URL
+    const canonicalImage = image ? (image.startsWith('http') ? image : `${defaultUrl}${image}`) : `${defaultUrl}${defaultImage}`;
+
     return (
         <Helmet>
             {/* Standard Metadata */}
@@ -27,14 +30,14 @@ const SEO = ({ title, description, keywords, image, url, schema }: SEOProps) => 
             <meta property="og:url" content={url || defaultUrl} />
             <meta property="og:title" content={title || siteTitle} />
             <meta property="og:description" content={description || defaultDescription} />
-            <meta property="og:image" content={image || defaultImage} />
+            <meta property="og:image" content={canonicalImage} />
 
             {/* Twitter */}
             <meta name="twitter:card" content="summary_large_image" />
             <meta name="twitter:url" content={url || defaultUrl} />
             <meta name="twitter:title" content={title || siteTitle} />
             <meta name="twitter:description" content={description || defaultDescription} />
-            <meta name="twitter:image" content={image || defaultImage} />
+            <meta name="twitter:image" content={canonicalImage} />
 
             {/* JSON-LD Schema */}
             {schema && (

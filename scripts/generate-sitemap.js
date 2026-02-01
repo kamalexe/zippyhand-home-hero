@@ -2,7 +2,7 @@
 import { writeFileSync } from 'fs';
 import { resolve } from 'path';
 
-const SITE_URL = 'https://zippyhand.com'; // Replace with your actual domain
+const SITE_URL = 'https://www.fixkro.in'; // Replace with your actual domain
 const PUBLIC_DIR = resolve('public');
 
 const pages = [
