@@ -5,30 +5,23 @@ export default async function handler(req, res) {
     const supabaseUrl = process.env.VITE_SUPABASE_URL;
     const supabaseAnonKey = process.env.VITE_SUPABASE_ANON_KEY;
 
-    if (!supabaseUrl || !supabaseAnonKey) {
-      throw new Error('Missing Supabase environment variables');
-    }
+    // Use Supabase connection only if credentials are provided
+    // const supabase = supabaseUrl && supabaseAnonKey ? createClient(supabaseUrl, supabaseAnonKey) : null;
 
-    const supabase = createClient(supabaseUrl, supabaseAnonKey);
+    // Example: If we had distinct service pages, we would map them here:
+    // const services = supabase ? await supabase.from('services').select('id, title') : { data: [] };
 
-    // Fetch services to potentially include them or just to verify DB connection
-    // Currently, we don't have individual service pages, but fetching them allows us to
-    // potentialy use their last update time (if available) or just prove dynamic connectivity.
-    const { data: services, error } = await supabase
-      .from('services')
-      .select('id, title');
-
-    if (error) {
-      console.error('Supabase error:', error);
-      throw error;
-    }
 
     const baseUrl = 'https://www.fixkro.in';
-    
-    // Static pages
+
+
     const pages = [
       { url: '/', changefreq: 'weekly', priority: 1.0 },
       { url: '/login', changefreq: 'monthly', priority: 0.5 },
+      { url: '/about', changefreq: 'monthly', priority: 0.8 },
+      { url: '/contact', changefreq: 'monthly', priority: 0.8 },
+      { url: '/privacy-policy', changefreq: 'yearly', priority: 0.5 },
+      { url: '/terms-of-service', changefreq: 'yearly', priority: 0.5 },
     ];
 
     // Example: If we had distinct service pages, we would map them here:
