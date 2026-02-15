@@ -12,16 +12,16 @@ const Footer = () => {
       { name: "RO Service", href: "#services" },
     ],
     company: [
-      { name: "About Us", href: "#" },
+      { name: "About Us", href: "/about" },
       { name: "How It Works", href: "#" },
       { name: "Careers", href: "#" },
       { name: "Blog", href: "#" },
     ],
     support: [
       { name: "Help Center", href: "#" },
-      { name: "Contact Us", href: "#" },
-      { name: "Terms of Service", href: "#" },
-      { name: "Privacy Policy", href: "#" },
+      { name: "Contact Us", href: "/contact" },
+      { name: "Terms of Service", href: "/terms" },
+      { name: "Privacy Policy", href: "/privacy" },
     ],
   };
 
