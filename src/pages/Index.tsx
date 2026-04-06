@@ -2,7 +2,7 @@ import { useState } from "react";
 import Header from "@/components/landing/Header";
 import Hero from "@/components/landing/Hero";
 import WhyChooseUs from "@/components/landing/WhyChooseUs";
-import Services from "@/components/landing/Services";
+import WhatWeFix from "@/components/landing/WhatWeFix";
 import Testimonials from "@/components/landing/Testimonials";
 import FAQ from "@/components/landing/FAQ";
 import Footer from "@/components/landing/Footer";
@@ -57,10 +57,10 @@ const Index = () => {
         keywords="AC repair Gaya, washing machine repair Gaya, RO service Gaya, appliance repair, FixKro"
         schema={localBusinessSchema}
       />
-      <Header onBookService={() => handleBookService()} />
+      <Header />
       <Hero onBookService={() => handleBookService()} />
       <WhyChooseUs />
-      <Services onBookService={handleBookService} />
+      <WhatWeFix />
       <Testimonials />
       <FAQ />
       <Footer />

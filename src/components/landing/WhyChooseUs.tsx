@@ -1,155 +1,88 @@
 import { motion, useInView } from "framer-motion";
-import { useRef, useEffect, useState } from "react";
-import technicianImg from "@/assets/technician-1.png";
-import warrantyImg from "@/assets/warranty-badge.png";
-import fastResponseImg from "@/assets/fast-response.png";
-import happyCustomersImg from "@/assets/happy-customers.png";
-
-const features = [
-  {
-    image: technicianImg,
-    title: "Verified Professionals",
-    description: "Background-checked and trained experts you can trust with your home appliances",
-    value: "100%",
-    suffix: "Verified",
-  },
-  {
-    image: warrantyImg,
-    title: "90 Days Warranty",
-    description: "Free re-service guarantee on all repairs. Your satisfaction is our priority",
-    value: "90",
-    suffix: "Days",
-  },
-  {
-    image: fastResponseImg,
-    title: "45 Min Response",
-    description: "Quick arrival time for urgent repairs. We value your time",
-    value: "45",
-    suffix: "Min",
-  },
-  {
-    image: happyCustomersImg,
-    title: "Trusted by Many",
-    description: "Join our growing family of happy customers across Gaya",
-    value: "500",
-    suffix: "+",
-  },
-];
-
-const Counter = ({ value, suffix }: { value: string; suffix: string }) => {
-  const [count, setCount] = useState(0);
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
-  const numericValue = parseInt(value) || 0;
-
-  useEffect(() => {
-    if (isInView && numericValue > 0) {
-      const duration = 2000;
-      const steps = 60;
-      const increment = numericValue / steps;
-      let current = 0;
-      
-      const timer = setInterval(() => {
-        current += increment;
-        if (current >= numericValue) {
-          setCount(numericValue);
-          clearInterval(timer);
-        } else {
-          setCount(Math.floor(current));
-        }
-      }, duration / steps);
-
-      return () => clearInterval(timer);
-    }
-  }, [isInView, numericValue]);
-
-  return (
-    <span ref={ref} className="text-3xl md:text-4xl font-bold text-primary">
-      {value === "100%" ? value : count}
-      {value !== "100%" && suffix}
-    </span>
-  );
-};
+import { useRef } from "react";
+import banner1 from "@/assets/banner1.png";
+import banner2 from "@/assets/banner2.png";
+import banner3 from "@/assets/banner 3.png";
 
 const WhyChooseUs = () => {
   const containerRef = useRef(null);
   const isInView = useInView(containerRef, { once: true, margin: "-100px" });
 
+  const banners = [
+    { id: 1, src: banner1, alt: "Why Choose Us Banner 1" },
+    { id: 2, src: banner2, alt: "Why Choose Us Banner 2" },
+    { id: 3, src: banner3, alt: "Why Choose Us Banner 3" },
+  ];
+
+  const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: { staggerChildren: 0.2 },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 50, scale: 0.95 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: { type: "spring" as const, stiffness: 100, damping: 15 },
+    },
+  };
+
   return (
-    <section id="why-us" className="py-12 md:py-20 bg-muted/30 relative overflow-hidden">
+    <section id="why-us" className="py-16 md:py-24 bg-background relative overflow-hidden">
+      {/* Subtle background accents */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+      <div className="absolute bottom-0 left-0 w-72 h-72 bg-primary/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
+
       <div className="container mx-auto px-4 relative z-10" ref={containerRef}>
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-10 md:mb-14"
+          className="text-center mb-12 md:mb-16"
         >
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-foreground">
+          <motion.span
+            className="inline-block text-primary font-semibold text-sm uppercase tracking-wider mb-3"
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.2 }}
+          >
+            Why Trust Us
+          </motion.span>
+          <h2 
+            className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground"
+            style={{ fontFamily: "'Poppins', sans-serif" }}
+          >
             WHY CHOOSE <span className="text-primary">FIXKRO</span>
           </h2>
         </motion.div>
 
-        {/* Features Grid - 2x2 on all screen sizes */}
-        <motion.div 
-          className="grid grid-cols-2 gap-3 sm:gap-4 md:gap-6 max-w-4xl mx-auto"
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          variants={{
-            hidden: {},
-            visible: {
-              transition: {
-                staggerChildren: 0.1,
-                delayChildren: 0.2,
-              },
-            },
-          }}
+        {/* Banners Horizontal Row */}
+        <motion.div
+          variants={containerVariants}
+          initial={{ opacity: 0 }}
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto items-center"
         >
-          {features.map((feature, index) => (
+          {banners.map((banner) => (
             <motion.div
-              key={feature.title}
-              variants={{
-                hidden: { opacity: 0, y: 30 },
-                visible: { 
-                  opacity: 1, 
-                  y: 0,
-                  transition: {
-                    type: "spring",
-                    stiffness: 100,
-                    damping: 15,
-                  },
-                },
-              }}
-              whileHover={{ 
-                y: -5, 
-                transition: { type: "spring", stiffness: 300 }
-              }}
-              className="group"
+              key={banner.id}
+              variants={itemVariants}
+              whileHover={{ y: -10, scale: 1.02 }}
+              className="relative overflow-hidden rounded-[2rem] border-[6px] border-white shadow-[0_0_25px_rgba(255,255,255,0.8),0_10px_30px_rgba(0,0,0,0.08)] bg-white group cursor-pointer w-full"
             >
-              <div className="bg-card rounded-xl sm:rounded-2xl p-3 sm:p-5 md:p-6 h-full shadow-md hover:shadow-xl transition-shadow duration-300 flex flex-col items-center text-center">
-                {/* Image container */}
-                <motion.div
-                  className="w-full aspect-[4/3] rounded-lg sm:rounded-xl overflow-hidden bg-muted mb-3 sm:mb-4"
-                  whileHover={{ scale: 1.02 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <img
-                    src={feature.image}
-                    alt={feature.title}
-                    className="w-full h-full object-cover"
-                  />
-                </motion.div>
-
-                {/* Counter badge */}
-                <div className="mb-2">
-                  <Counter value={feature.value} suffix={feature.suffix} />
-                </div>
-
-                {/* Title */}
-                <h3 className="text-xs sm:text-sm md:text-base font-semibold text-foreground leading-tight">
-                  {feature.title}
-                </h3>
-              </div>
+              <img
+                src={banner.src}
+                alt={banner.alt}
+                className="w-full h-auto block transform transition-transform duration-700 group-hover:scale-105"
+              />
+              {/* Subtle hover overlay */}
+              <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-colors duration-300 pointer-events-none" />
             </motion.div>
           ))}
         </motion.div>

@@ -52,7 +52,7 @@ const Footer = () => {
               </span>
             </motion.a>
             <p className="text-background/70 mb-6 max-w-sm leading-relaxed">
-              Your trusted partner for home appliance repairs in Gaya. 
+              Your trusted partner for home appliance repairs in Agra. 
               Fast, reliable, and backed by our 90-day warranty.
             </p>
             {/* Contact Info */}
@@ -73,7 +73,7 @@ const Footer = () => {
               </a>
               <div className="flex items-start gap-3 text-background/70">
                 <MapPin className="w-5 h-5 flex-shrink-0 mt-0.5" />
-                <span>Gaya, Bihar, India</span>
+                <span>Agra, Uttar Pradesh, India</span>
               </div>
             </div>
           </div>

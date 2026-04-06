@@ -2,105 +2,101 @@
 @tailwind components;
 @tailwind utilities;
 
-/* FixKro Design System - Brand Color: #4774E6 (HSL: 222 76% 59%) */
+/* FixKro Design System - Brand Color: #008B9C (HSL: 187 100% 31%) */
 
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 222 47% 11%;
+    --foreground: 187 40% 11%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
+    --card-foreground: 187 40% 11%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
+    --popover-foreground: 187 40% 11%;
 
-    /* Brand Primary - #4774E6 */
-    --primary: 222 76% 59%;
+    --primary: 187 100% 31%;
     --primary-foreground: 0 0% 100%;
 
-    /* Light blue tint for backgrounds */
-    --secondary: 222 76% 96%;
-    --secondary-foreground: 222 47% 11%;
+    --secondary: 187 60% 96%;
+    --secondary-foreground: 187 40% 11%;
 
-    --muted: 220 14% 96%;
-    --muted-foreground: 220 9% 46%;
+    --muted: 187 14% 96%;
+    --muted-foreground: 187 9% 46%;
 
-    /* Accent - slightly different shade for variety */
-    --accent: 222 76% 94%;
-    --accent-foreground: 222 47% 11%;
+    --accent: 187 60% 94%;
+    --accent-foreground: 187 40% 11%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 13% 91%;
-    --input: 220 13% 91%;
-    --ring: 222 76% 59%;
+    --border: 187 13% 91%;
+    --input: 187 13% 91%;
+    --ring: 187 100% 31%;
 
     --radius: 0.75rem;
 
-    /* Extended brand palette */
-    --brand-light: 222 76% 96%;
-    --brand-dark: 222 76% 45%;
+    --brand-light: 187 60% 96%;
+    --brand-dark: 187 100% 22%;
     --success: 142 71% 45%;
     --success-foreground: 0 0% 100%;
-    --warning: 38 92% 50%;
-    --warning-foreground: 0 0% 100%;
+    --warning: 50 100% 50%;
+    --warning-foreground: 0 0% 10%;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 222 76% 59%;
+    --sidebar-primary: 187 100% 31%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 222 76% 96%;
-    --sidebar-accent-foreground: 222 47% 11%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 222 76% 59%;
+    --sidebar-accent: 187 60% 96%;
+    --sidebar-accent-foreground: 187 40% 11%;
+    --sidebar-border: 187 13% 91%;
+    --sidebar-ring: 187 100% 31%;
   }
 
   .dark {
-    --background: 222 47% 6%;
-    --foreground: 210 40% 98%;
+    --background: 187 40% 6%;
+    --foreground: 180 40% 98%;
 
-    --card: 222 47% 8%;
-    --card-foreground: 210 40% 98%;
+    --card: 187 40% 8%;
+    --card-foreground: 180 40% 98%;
 
-    --popover: 222 47% 8%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 187 40% 8%;
+    --popover-foreground: 180 40% 98%;
 
-    --primary: 222 76% 59%;
+    --primary: 187 100% 31%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 222 30% 15%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 187 30% 15%;
+    --secondary-foreground: 180 40% 98%;
 
-    --muted: 222 30% 15%;
-    --muted-foreground: 215 20% 65%;
+    --muted: 187 30% 15%;
+    --muted-foreground: 187 20% 65%;
 
-    --accent: 222 30% 18%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 187 30% 18%;
+    --accent-foreground: 180 40% 98%;
 
     --destructive: 0 63% 31%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 180 40% 98%;
 
-    --border: 222 30% 18%;
-    --input: 222 30% 18%;
-    --ring: 222 76% 59%;
+    --border: 187 30% 18%;
+    --input: 187 30% 18%;
+    --ring: 187 100% 31%;
 
-    --brand-light: 222 30% 20%;
-    --brand-dark: 222 76% 70%;
+    --brand-light: 187 30% 20%;
+    --brand-dark: 187 100% 50%;
     --success: 142 71% 45%;
     --success-foreground: 0 0% 100%;
-    --warning: 38 92% 50%;
-    --warning-foreground: 0 0% 100%;
+    --warning: 50 100% 50%;
+    --warning-foreground: 0 0% 10%;
 
-    --sidebar-background: 222 47% 6%;
+    --sidebar-background: 187 40% 6%;
     --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 222 76% 59%;
+    --sidebar-primary: 187 100% 31%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 222 30% 15%;
+    --sidebar-accent: 187 30% 15%;
     --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 222 30% 18%;
-    --sidebar-ring: 222 76% 59%;
+    --sidebar-border: 187 30% 18%;
+    --sidebar-ring: 187 100% 31%;
   }
 }
 

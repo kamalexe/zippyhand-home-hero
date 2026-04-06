@@ -1,13 +1,9 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Zap, Phone } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Menu, X } from "lucide-react";
+import logo from "@/assets/logo.png";
 
-interface HeaderProps {
-  onBookService: () => void;
-}
-
-const Header = ({ onBookService }: HeaderProps) => {
+const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
@@ -54,14 +50,12 @@ const Header = ({ onBookService }: HeaderProps) => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled
-          ? "bg-background/95 backdrop-blur-xl shadow-lg border-b border-border/50"
-          : "bg-gradient-to-b from-background/80 to-transparent"
+      className={`fixed z-50 transition-all duration-500 top-4 left-4 right-4 lg:left-1/2 lg:right-auto lg:-translate-x-1/2 lg:w-[1024px] border-[4px] border-white shadow-[0_0_25px_rgba(255,255,255,0.8),_0_8px_30px_rgba(0,0,0,0.1)] bg-white/70 backdrop-blur-xl hover:bg-white/90 hover:shadow-[0_0_35px_rgba(255,255,255,1),_0_10px_40px_rgba(0,0,0,0.15)] ${
+        !isMobileMenuOpen ? "rounded-full" : "rounded-[2rem]"
       }`}
     >
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16 md:h-20">
+      <div className="px-5 md:px-8">
+        <div className="flex items-center justify-between h-14 md:h-[72px]">
           {/* Logo */}
           <motion.a
             href="#"
@@ -69,27 +63,14 @@ const Header = ({ onBookService }: HeaderProps) => {
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >
-            <motion.div 
-              className="relative"
-              animate={{ rotate: [0, -5, 5, 0] }}
-              transition={{ duration: 2, repeat: Infinity, repeatDelay: 3 }}
-            >
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center shadow-lg shadow-primary/25">
-                <Zap className="w-6 h-6 text-primary-foreground" />
-              </div>
-              <motion.div 
-                className="absolute -bottom-1 -right-1 w-4 h-4 bg-warning rounded-full border-2 border-background"
-                animate={{ scale: [1, 1.2, 1] }}
-                transition={{ duration: 1.5, repeat: Infinity }}
-              />
-            </motion.div>
-            <span className="text-xl md:text-2xl font-bold text-foreground">
-              Fix<span className="text-primary group-hover:text-primary/80 transition-colors">Kro</span>
+            <img src={logo} alt="FixKro logo" className="h-9 w-9 rounded-xl object-cover" />
+            <span className="text-xl font-bold text-foreground">
+              Fix<span className="text-[#E8D44D] group-hover:text-[#E8D44D]/80 transition-colors">Kro</span>
             </span>
           </motion.a>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-1">
+          {/* Desktop Navigation - Center Aligned */}
+          <nav className="hidden md:flex items-center gap-1 absolute left-1/2 -translate-x-1/2">
             {navLinks.map((link, index) => {
               const sectionId = link.href.replace("#", "");
               const isActive = activeSection === sectionId || (link.href === "#hero" && !activeSection);
@@ -98,10 +79,10 @@ const Header = ({ onBookService }: HeaderProps) => {
                 <motion.button
                   key={link.name}
                   onClick={() => handleNavClick(link.href)}
-                  className={`relative px-4 py-2 text-sm font-medium rounded-full transition-all duration-300 ${
+                  className={`relative px-5 py-2.5 text-[15px] font-semibold rounded-full transition-all duration-300 tracking-wide ${
                     isActive 
-                      ? "text-primary" 
-                      : "text-muted-foreground hover:text-foreground"
+                      ? "text-primary-foreground" 
+                      : "text-foreground/70 hover:text-primary"
                   }`}
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -109,61 +90,18 @@ const Header = ({ onBookService }: HeaderProps) => {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  {link.name}
+                  <span className="relative z-10">{link.name}</span>
                   {isActive && (
                     <motion.div
                       layoutId="activeNav"
-                      className="absolute inset-0 bg-primary/10 rounded-full -z-10"
+                      className="absolute inset-0 bg-primary shadow-lg shadow-primary/30 rounded-full z-0"
                       transition={{ type: "spring", stiffness: 300, damping: 30 }}
                     />
                   )}
-                  <motion.span
-                    className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 bg-primary rounded-full"
-                    initial={{ scale: 0 }}
-                    animate={{ scale: isActive ? 1 : 0 }}
-                    transition={{ duration: 0.2 }}
-                  />
                 </motion.button>
               );
             })}
           </nav>
-
-          {/* CTA Buttons */}
-          <div className="hidden md:flex items-center gap-3">
-            <motion.a
-              href="tel:+918787040661"
-              className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <motion.div
-                animate={{ rotate: [0, 15, -15, 0] }}
-                transition={{ duration: 0.5, repeat: Infinity, repeatDelay: 2 }}
-              >
-                <Phone className="w-4 h-4" />
-              </motion.div>
-              <span className="text-sm font-medium">+91 87870 40661</span>
-            </motion.a>
-            
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.5 }}
-            >
-              <Button
-                onClick={onBookService}
-                size="lg"
-                className="rounded-full px-6 shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 transition-all duration-300 bg-gradient-to-r from-primary to-primary/90 hover:scale-105"
-              >
-                <motion.span
-                  animate={{ x: [0, 2, 0] }}
-                  transition={{ duration: 1, repeat: Infinity, repeatDelay: 1 }}
-                >
-                  Book Now
-                </motion.span>
-              </Button>
-            </motion.div>
-          </div>
 
           {/* Mobile Menu Button */}
           <motion.button
@@ -195,6 +133,9 @@ const Header = ({ onBookService }: HeaderProps) => {
               )}
             </AnimatePresence>
           </motion.button>
+
+          {/* Empty div for flex spacing on desktop */}
+          <div className="hidden md:block w-[100px]" />
         </div>
 
         {/* Mobile Menu */}
@@ -208,7 +149,7 @@ const Header = ({ onBookService }: HeaderProps) => {
               className="md:hidden overflow-hidden"
             >
               <motion.nav 
-                className="flex flex-col gap-2 py-4 border-t border-border/50"
+                className="flex flex-col gap-2 py-4 px-2 border-t border-border/10 mt-2"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.1 }}
@@ -217,7 +158,7 @@ const Header = ({ onBookService }: HeaderProps) => {
                   <motion.button
                     key={link.name}
                     onClick={() => handleNavClick(link.href)}
-                    className="text-left text-muted-foreground hover:text-primary hover:bg-primary/5 transition-all font-medium py-3 px-4 rounded-xl"
+                    className="text-center text-foreground/80 hover:text-primary hover:bg-primary/5 transition-all font-semibold py-3 px-4 rounded-2xl active:scale-95"
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.05 * index }}
@@ -226,27 +167,6 @@ const Header = ({ onBookService }: HeaderProps) => {
                     {link.name}
                   </motion.button>
                 ))}
-                
-                <motion.div 
-                  className="pt-4 flex flex-col gap-3"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3 }}
-                >
-                  <a
-                    href="tel:+918787040661"
-                    className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors px-4 py-2"
-                  >
-                    <Phone className="w-4 h-4" />
-                    <span className="text-sm font-medium">+91 87870 40661</span>
-                  </a>
-                  <Button 
-                    onClick={onBookService} 
-                    className="rounded-full bg-gradient-to-r from-primary to-primary/90"
-                  >
-                    Book Service Now
-                  </Button>
-                </motion.div>
               </motion.nav>
             </motion.div>
           )}

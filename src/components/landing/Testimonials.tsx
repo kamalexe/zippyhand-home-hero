@@ -1,7 +1,5 @@
-import { motion, useInView } from "framer-motion";
-import { useRef, useState } from "react";
-import { Star, ChevronLeft, ChevronRight, Quote } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
+import { Star, Quote } from "lucide-react";
 
 const testimonials = [
   {
@@ -43,152 +41,116 @@ const testimonials = [
 ];
 
 const Testimonials = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const containerRef = useRef(null);
-  const isInView = useInView(containerRef, { once: true, margin: "-100px" });
-
-  const nextTestimonial = () => {
-    setCurrentIndex((prev) => (prev + 1) % testimonials.length);
-  };
-
-  const prevTestimonial = () => {
-    setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-  };
-
   return (
     <section id="testimonials" className="py-20 md:py-28 bg-background relative overflow-hidden">
       {/* Background decoration */}
-      <div className="absolute top-1/2 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 -translate-x-1/2" />
-      <div className="absolute top-1/2 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+      <div className="absolute top-1/2 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 -translate-x-1/2 pointer-events-none" />
+      <div className="absolute top-1/2 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
 
-      <div className="container mx-auto px-4 relative z-10" ref={containerRef}>
+      <div className="container mx-auto px-4 relative z-10">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
           <motion.span
             className="inline-block text-primary font-semibold text-sm uppercase tracking-wider mb-4"
             initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ delay: 0.2 }}
           >
             Customer Love
           </motion.span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-            What Our <span className="text-primary">Customers</span> Say
+          <h2 
+            className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4"
+            style={{ fontFamily: "'Poppins', sans-serif" }}
+          >
+            WHAT OUR <span className="text-primary">CUSTOMERS</span> SAY
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Real stories from real Gaya families who trust FixKro for their home repairs.
           </p>
         </motion.div>
 
-        {/* Testimonials Carousel */}
-        <div className="relative max-w-4xl mx-auto">
-          {/* Main Testimonial Card */}
-          <motion.div
-            key={currentIndex}
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -50 }}
-            transition={{ duration: 0.5 }}
-            className="bg-card border border-border rounded-3xl p-8 md:p-12 shadow-lg relative"
-          >
-            {/* Quote Icon */}
-            <Quote className="absolute top-8 right-8 w-12 h-12 text-primary/10" />
+        {/* Animated Marquee */}
+        <div className="relative w-full overflow-hidden py-4">
+          <div className="absolute left-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-r from-background to-transparent z-20 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-16 md:w-32 bg-gradient-to-l from-background to-transparent z-20 pointer-events-none" />
 
-            <div className="flex flex-col md:flex-row gap-8 items-start">
-              {/* Avatar */}
-              <div className="flex-shrink-0">
-                <div className="relative">
-                  <img
-                    src={testimonials[currentIndex].image}
-                    alt={testimonials[currentIndex].name}
-                    className="w-20 h-20 md:w-24 md:h-24 rounded-2xl object-cover"
-                  />
-                  <div className="absolute -bottom-2 -right-2 bg-primary text-primary-foreground text-xs font-bold px-2 py-1 rounded-lg">
-                    {testimonials[currentIndex].service}
+          <motion.div
+            className="flex gap-4 md:gap-6 w-max"
+            animate={{ x: [0, "-50%"] }}
+            transition={{
+              repeat: Infinity,
+              ease: "linear",
+              duration: 40, 
+            }}
+          >
+            {[...testimonials, ...testimonials].map((testimonial, idx) => (
+              <div
+                key={`${testimonial.id}-${idx}`}
+                className="w-[300px] md:w-[420px] shrink-0"
+              >
+                <div className="bg-card border border-border rounded-3xl p-6 md:p-8 h-full shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] hover:border-primary/20 transition-all duration-300 relative bg-white flex flex-col">
+                  {/* Quote Icon */}
+                  <Quote className="absolute top-6 right-6 w-8 h-8 text-primary/10" />
+
+                  {/* Header Row */}
+                  <div className="flex items-center gap-4 mb-5">
+                    <img
+                      src={testimonial.image}
+                      alt={testimonial.name}
+                      className="w-14 h-14 md:w-16 md:h-16 rounded-2xl object-cover ring-2 ring-primary/10"
+                    />
+                    <div>
+                      <h3 className="text-base md:text-lg font-bold text-foreground">
+                        {testimonial.name}
+                      </h3>
+                      <p className="text-muted-foreground text-xs md:text-sm">
+                        {testimonial.location}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Rating */}
+                  <div className="flex gap-1 mb-4">
+                    {[...Array(5)].map((_, i) => (
+                      <Star
+                        key={i}
+                        className={`w-4 h-4 md:w-5 md:h-5 ${
+                          i < testimonial.rating
+                            ? "fill-warning text-warning"
+                            : "text-muted"
+                        }`}
+                      />
+                    ))}
+                  </div>
+
+                  {/* Review Text */}
+                  <p className="text-sm md:text-base text-foreground leading-relaxed flex-grow">
+                    "{testimonial.review}"
+                  </p>
+
+                  <div className="mt-6 pt-4 border-t border-border/50 text-right">
+                    <span className="text-[10px] md:text-xs font-bold text-primary bg-primary/10 px-3 py-1.5 rounded-lg inline-block">
+                      {testimonial.service}
+                    </span>
                   </div>
                 </div>
               </div>
-
-              {/* Content */}
-              <div className="flex-1">
-                {/* Rating */}
-                <div className="flex gap-1 mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <Star
-                      key={i}
-                      className={`w-5 h-5 ${
-                        i < testimonials[currentIndex].rating
-                          ? "fill-warning text-warning"
-                          : "text-muted"
-                      }`}
-                    />
-                  ))}
-                </div>
-
-                {/* Review */}
-                <p className="text-lg md:text-xl text-foreground leading-relaxed mb-6">
-                  "{testimonials[currentIndex].review}"
-                </p>
-
-                {/* Author */}
-                <div>
-                  <h3 className="text-lg font-bold text-foreground">
-                    {testimonials[currentIndex].name}
-                  </h3>
-                  <p className="text-muted-foreground text-sm">
-                    {testimonials[currentIndex].location}
-                  </p>
-                </div>
-              </div>
-            </div>
+            ))}
           </motion.div>
-
-          {/* Navigation */}
-          <div className="flex items-center justify-center gap-4 mt-8">
-            <Button
-              variant="outline"
-              size="icon"
-              className="rounded-full border-2"
-              onClick={prevTestimonial}
-            >
-              <ChevronLeft className="w-5 h-5" />
-            </Button>
-
-            {/* Dots */}
-            <div className="flex gap-2">
-              {testimonials.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentIndex(index)}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                    index === currentIndex
-                      ? "bg-primary w-8"
-                      : "bg-muted hover:bg-primary/50"
-                  }`}
-                />
-              ))}
-            </div>
-
-            <Button
-              variant="outline"
-              size="icon"
-              className="rounded-full border-2"
-              onClick={nextTestimonial}
-            >
-              <ChevronRight className="w-5 h-5" />
-            </Button>
-          </div>
         </div>
 
         {/* Stats Row */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
           transition={{ delay: 0.5, duration: 0.6 }}
           className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16 pt-16 border-t border-border"
         >
