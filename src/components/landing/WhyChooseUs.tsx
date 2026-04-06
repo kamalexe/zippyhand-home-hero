@@ -2,7 +2,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import banner1 from "@/assets/banner1.png";
 import banner2 from "@/assets/banner2.png";
-import banner3 from "@/assets/banner 3.png";
+import banner3 from "@/assets/banner3.png";
 
 const WhyChooseUs = () => {
   const containerRef = useRef(null);
@@ -15,8 +15,9 @@ const WhyChooseUs = () => {
   ];
 
   const containerVariants = {
-    hidden: {},
+    hidden: { opacity: 0 },
     visible: {
+      opacity: 1,
       transition: { staggerChildren: 0.2 },
     },
   };
