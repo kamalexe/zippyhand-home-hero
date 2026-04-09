@@ -1,13 +1,15 @@
-import { useState } from "react";
+import { useState, lazy, Suspense } from "react";
 import Header from "@/components/landing/Header";
 import Hero from "@/components/landing/Hero";
-import WhyChooseUs from "@/components/landing/WhyChooseUs";
-import WhatWeFix from "@/components/landing/WhatWeFix";
-import Testimonials from "@/components/landing/Testimonials";
-import FAQ from "@/components/landing/FAQ";
-import Footer from "@/components/landing/Footer";
-import BookingModal from "@/components/landing/BookingModal";
 import SEO from "@/components/SEO";
+
+// Lazy load below-the-fold components
+const WhyChooseUs = lazy(() => import("@/components/landing/WhyChooseUs"));
+const WhatWeFix = lazy(() => import("@/components/landing/WhatWeFix"));
+const Testimonials = lazy(() => import("@/components/landing/Testimonials"));
+const FAQ = lazy(() => import("@/components/landing/FAQ"));
+const Footer = lazy(() => import("@/components/landing/Footer"));
+const BookingModal = lazy(() => import("@/components/landing/BookingModal"));
 
 const Index = () => {
   const [isBookingOpen, setIsBookingOpen] = useState(false);
@@ -59,17 +61,22 @@ const Index = () => {
       />
       <Header />
       <Hero onBookService={() => handleBookService()} />
-      <WhyChooseUs />
-      <WhatWeFix />
-      <Testimonials />
-      <FAQ />
-      <Footer />
+
+      <Suspense fallback={<div className="h-96" />}>
+        <WhyChooseUs />
+        <WhatWeFix />
+        <Testimonials />
+        <FAQ />
+        <Footer />
+      </Suspense>
       
-      <BookingModal
-        isOpen={isBookingOpen}
-        onClose={() => setIsBookingOpen(false)}
-        preSelectedService={selectedService}
-      />
+      <Suspense fallback={null}>
+        <BookingModal
+          isOpen={isBookingOpen}
+          onClose={() => setIsBookingOpen(false)}
+          preSelectedService={selectedService}
+        />
+      </Suspense>
     </div>
   );
 };

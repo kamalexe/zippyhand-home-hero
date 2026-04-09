@@ -101,7 +101,13 @@ const Hero = ({ onBookService }: HeroProps) => {
             style={{ x: leftX, rotate: leftRotate, scale: sideScale, transformOrigin: "bottom center" }}
             transition={{ duration: 1.2, delay: 0.5, type: "spring", stiffness: 60, damping: 14 }}
           >
-             <img src={ScreenLeft} alt="Service Details" className="w-full h-auto object-contain" />
+            <img
+              src={ScreenLeft}
+              alt="Service Details"
+              width={450}
+              height={900}
+              className="w-full h-auto object-contain"
+            />
           </motion.div>
           
           {/* Back right phone (Booking Sheet) */}
@@ -112,7 +118,13 @@ const Hero = ({ onBookService }: HeroProps) => {
             style={{ x: rightX, rotate: rightRotate, scale: sideScale, transformOrigin: "bottom center" }}
             transition={{ duration: 1.2, delay: 0.5, type: "spring", stiffness: 60, damping: 14 }}
           >
-             <img src={ScreenRight} alt="Booking Summary" className="w-full h-auto object-contain" />
+            <img
+              src={ScreenRight}
+              alt="Booking Summary"
+              width={450}
+              height={900}
+              className="w-full h-auto object-contain"
+            />
           </motion.div>
 
           {/* Center main phone (Home) */}
@@ -122,7 +134,13 @@ const Hero = ({ onBookService }: HeroProps) => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 1.2, delay: 0.4, type: "spring", stiffness: 70, damping: 14 }}
           >
-             <img src={ScreenCenter} alt="Home Screen" className="w-full h-auto object-contain relative translate-y-6" />
+            <img
+              src={ScreenCenter}
+              alt="Home Screen"
+              width={500}
+              height={1000}
+              className="w-full h-auto object-contain relative translate-y-6"
+            />
           </motion.div>
 
         </div>

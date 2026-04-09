@@ -79,6 +79,9 @@ const WhyChooseUs = () => {
               <img
                 src={banner.src}
                 alt={banner.alt}
+                width={600}
+                height={400}
+                loading="lazy"
                 className="w-full h-auto block transform transition-transform duration-700 group-hover:scale-105"
               />
               {/* Subtle hover overlay */}

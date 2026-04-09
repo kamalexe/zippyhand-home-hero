@@ -72,6 +72,9 @@ const WhatWeFix = () => {
                 <img
                   src={appliance.image}
                   alt={appliance.name}
+                  width={240}
+                  height={240}
+                  loading="lazy"
                   className="w-full h-auto max-h-[160px] md:max-h-[240px] object-contain drop-shadow-xl hover:scale-110 hover:drop-shadow-2xl transition-all duration-500 ease-out"
                 />
               </div>

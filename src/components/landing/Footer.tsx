@@ -52,7 +52,14 @@ const Footer = () => {
               className="flex items-center gap-2 mb-6"
               whileHover={{ scale: 1.02 }}
             >
-              <img src={logo} alt="FixKro logo" className="h-10 w-10 md:h-12 md:w-12 rounded-xl object-cover shadow-sm" />
+              <img
+                src={logo}
+                alt="FixKro logo"
+                width={48}
+                height={48}
+                loading="lazy"
+                className="h-10 w-10 md:h-12 md:w-12 rounded-xl object-cover shadow-sm"
+              />
               <span className="text-2xl md:text-3xl font-extrabold text-slate-800 tracking-tight">
                 Fix<span className="text-[#E8D44D]">Kro</span>
               </span>
