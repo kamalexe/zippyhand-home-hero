@@ -6,7 +6,7 @@ import banner3 from "@/assets/banner3.png";
 
 const WhyChooseUs = () => {
   const containerRef = useRef(null);
-  const isInView = useInView(containerRef, { once: true, margin: "-100px" });
+  const isInView = useInView(containerRef, { once: true, margin: "-50px" });
 
   const banners = [
     { id: 1, src: banner1, alt: "Why Choose Us Banner 1" },
@@ -15,19 +15,20 @@ const WhyChooseUs = () => {
   ];
 
   const containerVariants = {
-    hidden: {},
+    hidden: { opacity: 0 },
     visible: {
+      opacity: 1,
       transition: { staggerChildren: 0.2 },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 50, scale: 0.95 },
+    hidden: { opacity: 0, y: 30, scale: 0.98 },
     visible: {
       opacity: 1,
       y: 0,
       scale: 1,
-      transition: { type: "spring" as const, stiffness: 100, damping: 15 },
+      transition: { type: "spring" as const, stiffness: 80, damping: 12 },
     },
   };
 
@@ -40,16 +41,15 @@ const WhyChooseUs = () => {
       <div className="container mx-auto px-4 relative z-10" ref={containerRef}>
         {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+          variants={itemVariants}
           transition={{ duration: 0.6 }}
           className="text-center mb-12 md:mb-16"
         >
           <motion.span
             className="inline-block text-primary font-semibold text-sm uppercase tracking-wider mb-3"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 0.2 }}
+            variants={itemVariants}
           >
             Why Trust Us
           </motion.span>
@@ -64,7 +64,7 @@ const WhyChooseUs = () => {
         {/* Banners Horizontal Row */}
         <motion.div
           variants={containerVariants}
-          initial={{ opacity: 0 }}
+          initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
           className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto items-center"
