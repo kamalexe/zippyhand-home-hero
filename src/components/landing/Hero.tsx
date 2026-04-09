@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { Download } from "lucide-react";
 import ScreenCenter from "@/assets/1 SCREEN.png";
 import ScreenLeft from "@/assets/side left.png";
 import ScreenRight from "@/assets/side right.png";
@@ -9,8 +10,19 @@ interface HeroProps {
 }
 
 const Hero = ({ onBookService }: HeroProps) => {
+  const { scrollY } = useScroll();
+  
+  // Tie expansion to the first 400 pixels of scroll
+  const leftX = useTransform(scrollY, [0, 400], ["0%", "-60%"]);
+  const rightX = useTransform(scrollY, [0, 400], ["0%", "60%"]);
+  
+  const leftRotate = useTransform(scrollY, [0, 400], [0, -12]);
+  const rightRotate = useTransform(scrollY, [0, 400], [0, 12]);
+  
+  const sideScale = useTransform(scrollY, [0, 400], [0.8, 0.9]);
+
   return (
-    <section id="hero" className="relative min-h-screen flex flex-col justify-between overflow-hidden bg-gradient-to-b from-white to-[#E8FCF5] pt-24 font-sans">
+    <section id="hero" className="relative min-h-screen flex flex-col justify-between overflow-hidden bg-gradient-to-b from-white to-[#E8FCF5] pt-48 font-sans">
       
       {/* Background soft glow - inspired by Pronto light green bottom gradient */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -40,21 +52,39 @@ const Hero = ({ onBookService }: HeroProps) => {
             Download the app now
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
-            <a
-              href="https://play.google.com/store/apps/details?id=com.iotabuild.zippyhand"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:scale-105 transition-transform inline-block"
-            >
-              <img src={playIcon} alt="Get it on Google Play" className="h-14 md:h-16 w-auto object-contain drop-shadow-md" />
-            </a>
-          </div>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-6 md:gap-12 mb-10">
+            <div className="flex flex-col items-center group">
+              <p className="text-xs font-bold text-gray-400 uppercase tracking-[0.15em] mb-2 group-hover:text-cyan-600 transition-colors">For Customers</p>
+              <a
+                href="https://play.google.com/store/apps/details?id=com.iotabuild.zippyhand"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:-translate-y-1 hover:scale-105 transition-all duration-300 inline-block"
+              >
+                <img src={playIcon} alt="Download Customer App" className="h-14 md:h-16 w-auto object-contain drop-shadow-md" />
+              </a>
+            </div>
 
-          <p className="text-lg md:text-xl text-gray-500 font-medium">
-            Your home appliances, professionally repaired <br className="hidden md:block"/>
-            <span className="text-gray-400">— exactly when you need it</span>
-          </p>
+            <div className="hidden sm:block w-px h-12 bg-gray-300 rounded-full opacity-60"></div>
+            
+            {/* Mobile divider */}
+            <div className="sm:hidden w-12 h-px bg-gray-200 rounded-full my-2"></div>
+
+            <div className="flex flex-col items-center group">
+              <p className="text-xs font-bold text-gray-400 uppercase tracking-[0.15em] mb-2 group-hover:text-amber-500 transition-colors">For Partners</p>
+              <a
+                href="/partner-app.apk"
+                download
+                className="h-14 md:h-16 px-6 sm:px-8 flex items-center justify-center gap-3 bg-gradient-to-tr from-zinc-900 to-black text-white rounded-[0.8rem] shadow-[0_8px_20px_rgba(0,0,0,0.2)] hover:shadow-[0_12px_25px_rgba(232,212,77,0.2)] hover:-translate-y-1 hover:scale-105 transition-all duration-300 border border-zinc-800/80"
+              >
+                <Download className="w-5 md:w-6 h-5 md:h-6 text-[#E8D44D] drop-shadow-sm group-hover:scale-110 group-hover:-translate-y-0.5 transition-transform" />
+                <div className="flex flex-col items-start leading-tight">
+                   <span className="text-[9px] md:text-[10px] text-zinc-400 font-medium uppercase tracking-widest">Download</span>
+                   <span className="text-[14px] md:text-[16px] font-bold tracking-wider text-zinc-100">Android APK</span>
+                </div>
+              </a>
+            </div>
+          </div>
         </motion.div>
       </div>
 
@@ -66,29 +96,34 @@ const Hero = ({ onBookService }: HeroProps) => {
           {/* Back left phone (Service Details) */}
           <motion.div
             className="absolute bottom-6 w-[37%] z-10"
-            initial={{ opacity: 0, scale: 0.5, x: "30%", y: 200, rotate: 0, transformOrigin: "bottom center" }}
-            animate={{ opacity: 1, scale: 0.9, x: "-60%", y: 0, rotate: -12 }}
-            transition={{ duration: 1.2, delay: 0.6, type: "spring", stiffness: 60, damping: 14 }}
+            initial={{ opacity: 0, y: 200 }}
+            animate={{ opacity: 1, y: 0 }}
+            style={{ x: leftX, rotate: leftRotate, scale: sideScale, transformOrigin: "bottom center" }}
+            transition={{ duration: 1.2, delay: 0.5, type: "spring", stiffness: 60, damping: 14 }}
           >
-             <img src={ScreenLeft} alt="Service Details" className="w-full h-auto object-contain rounded-[32px]" />          </motion.div>
+             <img src={ScreenLeft} alt="Service Details" className="w-full h-auto object-contain" />
+          </motion.div>
           
           {/* Back right phone (Booking Sheet) */}
           <motion.div
             className="absolute bottom-6 w-[37%] z-10"
-            initial={{ opacity: 0, scale: 0.5, x: "-30%", y: 200, rotate: 0, transformOrigin: "bottom center" }}
-            animate={{ opacity: 1, scale: 0.9, x: "60%", y: 0, rotate: 12 }}
-            transition={{ duration: 1.2, delay: 0.7, type: "spring", stiffness: 60, damping: 14 }}
+            initial={{ opacity: 0, y: 200 }}
+            animate={{ opacity: 1, y: 0 }}
+            style={{ x: rightX, rotate: rightRotate, scale: sideScale, transformOrigin: "bottom center" }}
+            transition={{ duration: 1.2, delay: 0.5, type: "spring", stiffness: 60, damping: 14 }}
           >
-             <img src={ScreenRight} alt="Booking Summary" className="w-full h-auto object-contain rounded-[32px]" />          </motion.div>
+             <img src={ScreenRight} alt="Booking Summary" className="w-full h-auto object-contain" />
+          </motion.div>
 
           {/* Center main phone (Home) */}
           <motion.div
             className="relative z-20 w-[42%] pb-2"
-            initial={{ opacity: 0, y: 300, scale: 0.7 }}
+            initial={{ opacity: 0, y: 300, scale: 0.8 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 1.2, delay: 0.4, type: "spring", stiffness: 70, damping: 14 }}
           >
-             <img src={ScreenCenter} alt="Home Screen" className="w-full h-auto object-contain rounded-[36px] relative translate-y-6" />          </motion.div>
+             <img src={ScreenCenter} alt="Home Screen" className="w-full h-auto object-contain relative translate-y-6" />
+          </motion.div>
 
         </div>
 
