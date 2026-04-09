@@ -1,9 +1,9 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Download } from "lucide-react";
-import ScreenCenter from "@/assets/1 SCREEN.png";
-import ScreenLeft from "@/assets/side left.png";
-import ScreenRight from "@/assets/side right.png";
-import playIcon from "@/assets/play icon.avif";
+import ScreenCenter from "@/assets/1-screen.png";
+import ScreenLeft from "@/assets/side-left.png";
+import ScreenRight from "@/assets/side-right.png";
+import playIcon from "@/assets/play-icon.avif";
 
 interface HeroProps {
   onBookService: () => void;
