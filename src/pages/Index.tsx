@@ -6,6 +6,7 @@ import SEO from "@/components/SEO";
 // Lazy load below-the-fold components
 const WhyChooseUs = lazy(() => import("@/components/landing/WhyChooseUs"));
 const WhatWeFix = lazy(() => import("@/components/landing/WhatWeFix"));
+const Locations = lazy(() => import("@/components/landing/Locations"));
 const Testimonials = lazy(() => import("@/components/landing/Testimonials"));
 const FAQ = lazy(() => import("@/components/landing/FAQ"));
 const Footer = lazy(() => import("@/components/landing/Footer"));
@@ -24,12 +25,12 @@ const Index = () => {
     "@context": "https://schema.org",
     "@type": "HomeAndConstructionBusiness",
     "name": "FixKro",
-    "image": "https://www.fixkro.in/icon.png",
-    "description": "Expert home appliance repair services in Gaya. AC, Washing Machine, RO repair with 90-day warranty.",
+    "image": "https://www.fixkro.in/logo.png",
+    "description": "Expert home appliance repair services in Noida. AC, Washing Machine, RO repair with 90-day warranty.",
     "address": {
       "@type": "PostalAddress",
-      "addressLocality": "Gaya",
-      "addressRegion": "Bihar",
+      "addressLocality": "Noida",
+      "addressRegion": "Uttar Pradesh",
       "addressCountry": "IN"
     },
     "url": "https://www.fixkro.in",
@@ -55,14 +56,15 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <SEO
         title="Home"
-        description="Expert home appliance repair services in Gaya. AC, Washing Machine, RO repair with 90-day warranty. Book top-rated technicians now!"
-        keywords="AC repair Gaya, washing machine repair Gaya, RO service Gaya, appliance repair, FixKro"
+        description="Expert home appliance repair services in Noida. AC, Washing Machine, RO repair with 90-day warranty. Book top-rated technicians now!"
+        keywords="AC repair Noida, washing machine repair Noida, RO service Noida, appliance repair, FixKro"
         schema={localBusinessSchema}
       />
       <Header />
       <Hero onBookService={() => handleBookService()} />
 
       <Suspense fallback={<div className="h-96" />}>
+        <Locations />
         <WhyChooseUs />
         <WhatWeFix />
         <Testimonials />

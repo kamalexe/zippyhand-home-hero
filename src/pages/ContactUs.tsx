@@ -9,9 +9,9 @@ import Header from "@/components/landing/Header";
 import Footer from "@/components/landing/Footer";
 
 const contactInfo = [
-  { icon: Phone, label: "Phone", value: "+91 98765 43210", href: "tel:+919876543210" },
-  { icon: Mail, label: "Email", value: "hello@zippyhand.com", href: "mailto:hello@zippyhand.com" },
-  { icon: MapPin, label: "Address", value: "HSR Layout, Bangalore, Karnataka 560102", href: undefined },
+  { icon: Phone, label: "Phone", value: "+91 87870 40661", href: "tel:+918787040661" },
+  { icon: Mail, label: "Email", value: "support@fixkro.in", href: "mailto:support@fixkro.in" },
+  { icon: MapPin, label: "Address", value: "Noida, Uttar Pradesh, India", href: undefined },
   { icon: Clock, label: "Working Hours", value: "Mon–Sun: 8:00 AM – 9:00 PM", href: undefined },
 ];
 
@@ -123,7 +123,7 @@ const ContactUs = () => {
               <div className="rounded-xl overflow-hidden border border-border h-48 bg-muted flex items-center justify-center">
                 <div className="text-center text-muted-foreground">
                   <MapPin className="w-8 h-8 mx-auto mb-2" />
-                  <p className="text-sm">HSR Layout, Bangalore</p>
+                  <p className="text-sm">Noida, Uttar Pradesh</p>
                 </div>
               </div>
             </motion.div>

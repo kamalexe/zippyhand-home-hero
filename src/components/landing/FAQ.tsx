@@ -14,9 +14,9 @@ const faqs = [
       "Booking is super easy! Just click the 'Book Service' button, select your appliance and issue, choose a convenient time slot, and provide your address. Our team will confirm your booking within minutes.",
   },
   {
-    question: "What areas in Gaya do you cover?",
+    question: "What areas do you currently cover?",
     answer:
-      "We currently serve all major areas in Gaya including Bodhgaya, Wazirganj, Belganj, Imamganj, Tankuppa, and many more. Enter your pincode during booking to check availability.",
+      "We are currently exclusively serving all major sectors and areas in Noida. We are rapidly expanding and plan to launch in more cities soon!",
   },
   {
     question: "What is your pricing? Are there any hidden charges?",
@@ -31,7 +31,7 @@ const faqs = [
   {
     question: "How quickly can a technician arrive?",
     answer:
-      "We have an average response time of 45 minutes for most areas in Gaya. For urgent repairs, we try to dispatch a technician immediately. You can also schedule a visit at your preferred time.",
+      "We have an average response time of 45 minutes for most sectors in Noida. For urgent repairs, we try to dispatch a technician immediately. You can also schedule a visit at your preferred time.",
   },
   {
     question: "What payment methods do you accept?",

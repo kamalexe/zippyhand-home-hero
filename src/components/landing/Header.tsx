@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import logo from "@/assets/logo.png";
+import { useLocation, useNavigate, Link } from "react-router-dom";
+import logo from "@/assets/icon.png";
 import { useWeather } from "@/hooks/useWeather";
 
 
@@ -10,6 +11,8 @@ const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
   const { temp, loading } = useWeather();
+  const location = useLocation();
+  const navigate = useNavigate();
 
 
   useEffect(() => {
@@ -42,6 +45,12 @@ const Header = () => {
 
   const handleNavClick = (href: string) => {
     setIsMobileMenuOpen(false);
+    
+    if (location.pathname !== "/") {
+      navigate("/" + href);
+      return;
+    }
+
     const element = document.querySelector(href);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
@@ -49,12 +58,13 @@ const Header = () => {
   };
 
   return (
-    <div className="fixed top-2 lg:top-4 w-full flex justify-center z-50 pointer-events-none">
+    <div className="fixed top-0 w-full flex flex-col items-center z-50 pointer-events-none gap-0 md:gap-3 pt-2 lg:pt-4">
+
       <motion.header
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className={`pointer-events-auto relative w-[95%] max-w-[1000px] transition-all duration-500 bg-gradient-to-b from-white via-slate-50 to-slate-200 border border-white shadow-[0_20px_40px_rgba(0,0,0,0.15),_inset_0_4px_15px_rgba(255,255,255,1),_inset_0_-8px_15px_rgba(0,0,0,0.05)] ${!isMobileMenuOpen ? "rounded-[2rem] rounded-b-xl" : "rounded-[2rem]"
+        className={`pointer-events-auto relative w-[95%] max-w-[1000px] transition-all duration-500 bg-gradient-to-b from-white via-slate-50 to-slate-200 border border-white shadow-[0_20px_40px_rgba(0,0,0,0.15),_inset_0_4px_15px_rgba(255,255,255,1),_inset_0_-8px_15px_rgba(0,0,0,0.05)] ${!isMobileMenuOpen ? "rounded-[2rem] rounded-b-xl" : "rounded-[2rem] mt-2"
           }`}
       >
         {/* AC internal styling / shell */}
@@ -138,19 +148,14 @@ const Header = () => {
           <div className="flex items-center justify-between h-[56px] md:h-[64px]">
 
             {/* Left: Logo (AC Brand) */}
-            <motion.a
-              href="#"
+            <motion.div
               className="flex items-center gap-2 relative z-20 flex-1"
               whileTap={{ scale: 1.02 }}
             >
-              <img src={logo} alt="FixKro logo" className="h-8 w-8 md:h-10 md:w-10 rounded-lg object-cover shadow-sm" />
-              <div className="hidden sm:flex flex-col">
-                <span className="text-xl md:text-2xl font-black text-slate-400 tracking-widest uppercase leading-none drop-shadow-sm">
-                  FixKro
-                </span>
-                <span className="text-[8px] text-slate-400 tracking-[0.2em] uppercase mt-0.5 ml-0.5 font-semibold">Dual Inverter</span>
-              </div>
-            </motion.a>
+              <Link to="/">
+                <img src={logo} alt="FixKro logo" className="h-auto w-24 md:w-32 object-contain drop-shadow-md" />
+              </Link>
+            </motion.div>
 
 
             {/* Center: AC Control Panel Display */}

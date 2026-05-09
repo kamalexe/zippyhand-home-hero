@@ -5,7 +5,7 @@ import Footer from "@/components/landing/Footer";
 const sections = [
   {
     title: "1. Services",
-    content: `ZippyHand provides home appliance repair and maintenance services in Bangalore. Services include but are not limited to AC repair, washing machine repair, refrigerator repair, and water purifier servicing. All services are subject to availability and may vary by location.`,
+    content: `FixKro provides home appliance repair and maintenance services in Noida. Services include but are not limited to AC repair, washing machine repair, refrigerator repair, and water purifier servicing. All services are subject to availability and may vary by location.`,
   },
   {
     title: "2. Booking & Cancellation",
@@ -21,7 +21,7 @@ const sections = [
   },
   {
     title: "5. Liability",
-    content: `ZippyHand is not liable for pre-existing damage to appliances, issues arising from misuse or neglect, damage caused by power surges or natural events, or consequential damages beyond the repair cost. Our maximum liability is limited to the service fee paid.`,
+    content: `FixKro is not liable for pre-existing damage to appliances, issues arising from misuse or neglect, damage caused by power surges or natural events, or consequential damages beyond the repair cost. Our maximum liability is limited to the service fee paid.`,
   },
   {
     title: "6. User Responsibilities",
@@ -29,11 +29,11 @@ const sections = [
   },
   {
     title: "7. Intellectual Property",
-    content: `All content on the ZippyHand website, including text, graphics, logos, and software, is the property of ZippyHand and protected by intellectual property laws. Unauthorized use or reproduction is prohibited.`,
+    content: `All content on the FixKro website, including text, graphics, logos, and software, is the property of FixKro and protected by intellectual property laws. Unauthorized use or reproduction is prohibited.`,
   },
   {
     title: "8. Governing Law",
-    content: `These terms are governed by the laws of India. Any disputes shall be subject to the exclusive jurisdiction of the courts in Bangalore, Karnataka.`,
+    content: `These terms are governed by the laws of India. Any disputes shall be subject to the exclusive jurisdiction of the courts in Noida, Uttar Pradesh.`,
   },
 ];
 

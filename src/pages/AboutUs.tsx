@@ -32,7 +32,7 @@ const AboutUs = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
           >
-            About <span className="text-primary">ZippyHand</span>
+            About <span className="text-primary">FixKro</span>
           </motion.h1>
           <motion.p
             className="text-muted-foreground text-lg max-w-2xl mx-auto"
@@ -40,7 +40,7 @@ const AboutUs = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
           >
-            Bangalore's most trusted home appliance repair service. We're on a mission to make home repairs hassle-free, affordable, and reliable.
+            Noida's most trusted home appliance repair service. We're on a mission to make home repairs hassle-free, affordable, and reliable.
           </motion.p>
         </div>
       </section>
@@ -56,13 +56,13 @@ const AboutUs = () => {
             <h2 className="text-3xl font-bold text-foreground mb-6 text-center">Our Story</h2>
             <div className="space-y-4 text-muted-foreground leading-relaxed">
               <p>
-                ZippyHand was born from a simple frustration — finding a trustworthy technician for home appliance repairs in Bangalore shouldn't be so hard. Founded in 2020, we set out to bridge the gap between quality service and convenience.
+                FixKro was born from a simple frustration — finding a trustworthy technician for home appliance repairs in Noida shouldn't be so hard. Founded in 2020, we set out to bridge the gap between quality service and convenience.
               </p>
               <p>
-                Today, we've served over 15,000+ happy customers across Bangalore, with a team of 50+ certified technicians specializing in AC repair, washing machine service, refrigerator repair, and water purifier maintenance.
+                Today, we've served over 15,000+ happy customers across Noida, with a team of 50+ certified technicians specializing in AC repair, washing machine service, refrigerator repair, and water purifier maintenance.
               </p>
               <p>
-                Our commitment to transparent pricing, genuine spare parts, and a 90-day service warranty has made us Bangalore's preferred choice for home appliance repairs.
+                Our commitment to transparent pricing, genuine spare parts, and a 90-day service warranty has made us Noida's preferred choice for home appliance repairs.
               </p>
             </div>
           </motion.div>

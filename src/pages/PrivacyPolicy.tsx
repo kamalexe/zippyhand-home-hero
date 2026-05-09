@@ -25,7 +25,7 @@ const sections = [
   },
   {
     title: "Your Rights",
-    content: `You have the right to access, update, or delete your personal information at any time. You may also opt out of marketing communications. To exercise these rights, contact us at privacy@zippyhand.com or call +91 98765 43210.`,
+    content: `You have the right to access, update, or delete your personal information at any time. You may also opt out of marketing communications. To exercise these rights, contact us at support@fixkro.in or call +91 87870 40661.`,
   },
   {
     title: "Changes to This Policy",

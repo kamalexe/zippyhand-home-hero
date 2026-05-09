@@ -73,15 +73,12 @@ const Hero = ({ onBookService }: HeroProps) => {
             <div className="flex flex-col items-center group">
               <p className="text-xs font-bold text-gray-400 uppercase tracking-[0.15em] mb-2 group-hover:text-amber-500 transition-colors">For Partners</p>
               <a
-                href="/partner-app.apk"
-                download
-                className="h-14 md:h-16 px-6 sm:px-8 flex items-center justify-center gap-3 bg-gradient-to-tr from-zinc-900 to-black text-white rounded-[0.8rem] shadow-[0_8px_20px_rgba(0,0,0,0.2)] hover:shadow-[0_12px_25px_rgba(232,212,77,0.2)] hover:-translate-y-1 hover:scale-105 transition-all duration-300 border border-zinc-800/80"
+                href="https://play.google.com/store/apps/details?id=com.iotabuild.fixkropartner"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:-translate-y-1 hover:scale-105 transition-all duration-300 inline-block"
               >
-                <Download className="w-5 md:w-6 h-5 md:h-6 text-[#E8D44D] drop-shadow-sm group-hover:scale-110 group-hover:-translate-y-0.5 transition-transform" />
-                <div className="flex flex-col items-start leading-tight">
-                   <span className="text-[9px] md:text-[10px] text-zinc-400 font-medium uppercase tracking-widest">Download</span>
-                   <span className="text-[14px] md:text-[16px] font-bold tracking-wider text-zinc-100">Android APK</span>
-                </div>
+                <img src={playIcon} alt="Download Partner App" className="h-14 md:h-16 w-auto object-contain drop-shadow-md" />
               </a>
             </div>
           </div>

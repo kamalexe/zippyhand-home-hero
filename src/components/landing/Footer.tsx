@@ -1,46 +1,47 @@
 import { motion } from "framer-motion";
-import { Phone, Mail, MapPin, Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
-import logo from "@/assets/logo.png";
+import { Phone, Mail, MapPin, Instagram, Linkedin } from "lucide-react";
+import logo from "@/assets/icon.png";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const footerLinks = {
     services: [
-      { name: "AC Repair", href: "#services" },
-      { name: "AC Installation", href: "#services" },
-      { name: "Washing Machine Repair", href: "#services" },
-      { name: "RO Service", href: "#services" },
+      { name: "AC Repair", href: "/#services" },
+      { name: "AC Installation", href: "/#services" },
+      { name: "Washing Machine Repair", href: "/#services" },
+      { name: "RO Service", href: "/#services" },
     ],
     company: [
       { name: "About Us", href: "/about" },
-      { name: "How It Works", href: "#" },
+      { name: "How It Works", href: "/#how-it-works" },
       { name: "Careers", href: "#" },
       { name: "Blog", href: "#" },
     ],
     support: [
-      { name: "Help Center", href: "#" },
+      { name: "Help Center", href: "/#faq" },
       { name: "Contact Us", href: "/contact" },
       { name: "Terms of Service", href: "/terms-of-service" },
       { name: "Privacy Policy", href: "/privacy-policy" },
+      { name: "Delete Account", href: "/delete-account" },
     ],
   };
 
   const socialLinks = [
-    { icon: Facebook, href: "#", label: "Facebook" },
-    { icon: Twitter, href: "#", label: "Twitter" },
-    { icon: Instagram, href: "#", label: "Instagram" },
-    { icon: Linkedin, href: "#", label: "LinkedIn" },
+    { icon: Instagram, href: "https://www.instagram.com/thefixkro?utm_source=qr&igsh=MTl4bHY5NTBidmx5ZQ==", label: "Instagram" },
+    { icon: Linkedin, href: "https://www.linkedin.com/company/fixkro-home-appliance-expert/", label: "LinkedIn" },
   ];
 
   return (
-    <footer className="relative bg-white text-slate-800 pt-16 overflow-hidden">
+    <footer className="relative bg-[#015168] text-white pt-16 overflow-hidden">
       
       {/* Massive Watermark at Bottom Center */}
       <div className="absolute inset-x-0 bottom-[-2%] w-full flex justify-center items-center pointer-events-none select-none z-0 overflow-hidden">
-         <span className="text-[32vw] md:text-[26vw] font-black text-slate-50/80 uppercase tracking-tighter leading-none whitespace-nowrap text-center w-full">
-           FixKro
-         </span>
+          <img 
+            src={logo} 
+            alt="" 
+            className="w-full h-auto opacity-[0.03] grayscale brightness-200" 
+          />
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
@@ -55,57 +56,52 @@ const Footer = () => {
               <img
                 src={logo}
                 alt="FixKro logo"
-                width={48}
-                height={48}
                 loading="lazy"
-                className="h-10 w-10 md:h-12 md:w-12 rounded-xl object-cover shadow-sm"
+                className="h-auto w-32 md:w-40 object-contain mb-4"
               />
-              <span className="text-2xl md:text-3xl font-extrabold text-slate-800 tracking-tight">
-                Fix<span className="text-[#E8D44D]">Kro</span>
-              </span>
             </motion.a>
-            <p className="text-slate-500 mb-6 max-w-sm leading-relaxed">
-              Your trusted partner for home appliance repairs in Agra. 
+            <p className="text-white/70 mb-6 max-w-sm leading-relaxed">
+              Your trusted partner for home appliance repairs in Noida. 
               Fast, reliable, and backed by our 90-day warranty.
             </p>
             {/* Contact Info */}
             <div className="space-y-3">
               <a
                 href="tel:+918787040661"
-                className="flex items-center gap-3 text-slate-500 hover:text-amber-500 transition-colors font-medium"
+                className="flex items-center gap-3 text-white/70 hover:text-amber-400 transition-colors font-medium"
               >
-                <div className="w-8 h-8 rounded-full bg-slate-50 border border-slate-100 flex items-center justify-center text-slate-600 shadow-sm">
+                <div className="w-8 h-8 rounded-full bg-white/10 border border-white/10 flex items-center justify-center text-white/80 shadow-sm">
                   <Phone className="w-4 h-4" />
                 </div>
                 <span>+91 87870 40661</span>
               </a>
               <a
                 href="mailto:iota.build@gmail.com"
-                className="flex items-center gap-3 text-slate-500 hover:text-amber-500 transition-colors font-medium"
+                className="flex items-center gap-3 text-white/70 hover:text-amber-400 transition-colors font-medium"
               >
-                <div className="w-8 h-8 rounded-full bg-slate-50 border border-slate-100 flex items-center justify-center text-slate-600 shadow-sm">
+                <div className="w-8 h-8 rounded-full bg-white/10 border border-white/10 flex items-center justify-center text-white/80 shadow-sm">
                   <Mail className="w-4 h-4" />
                 </div>
                 <span>iota.build@gmail.com</span>
               </a>
-              <div className="flex items-start gap-3 text-slate-500 font-medium">
-                <div className="w-8 h-8 rounded-full bg-slate-50 border border-slate-100 flex items-center justify-center text-slate-600 flex-shrink-0 shadow-sm">
+              <div className="flex items-start gap-3 text-white/70 font-medium">
+                <div className="w-8 h-8 rounded-full bg-white/10 border border-white/10 flex items-center justify-center text-white/80 flex-shrink-0 shadow-sm">
                   <MapPin className="w-4 h-4" />
                 </div>
-                <span className="mt-1">Agra, Uttar Pradesh, India</span>
+                <span className="mt-1">Noida, Uttar Pradesh, India</span>
               </div>
             </div>
           </div>
 
           {/* Services Links */}
           <div>
-            <h4 className="text-lg font-bold mb-5 text-slate-800">Services</h4>
+            <h4 className="text-lg font-bold mb-5 text-white">Services</h4>
             <ul className="space-y-3">
               {footerLinks.services.map((link) => (
                 <li key={link.name}>
                   <a
                     href={link.href}
-                    className="text-slate-500 font-medium hover:text-amber-500 transition-colors"
+                    className="text-white/70 font-medium hover:text-amber-400 transition-colors"
                   >
                     {link.name}
                   </a>
@@ -116,13 +112,13 @@ const Footer = () => {
 
           {/* Company Links */}
           <div>
-            <h4 className="text-lg font-bold mb-5 text-slate-800">Company</h4>
+            <h4 className="text-lg font-bold mb-5 text-white">Company</h4>
             <ul className="space-y-3">
               {footerLinks.company.map((link) => (
                 <li key={link.name}>
                   <a
                     href={link.href}
-                    className="text-slate-500 font-medium hover:text-amber-500 transition-colors"
+                    className="text-white/70 font-medium hover:text-amber-400 transition-colors"
                   >
                     {link.name}
                   </a>
@@ -133,13 +129,13 @@ const Footer = () => {
 
           {/* Support Links */}
           <div>
-            <h4 className="text-lg font-bold mb-5 text-slate-800">Support</h4>
+            <h4 className="text-lg font-bold mb-5 text-white">Support</h4>
             <ul className="space-y-3">
               {footerLinks.support.map((link) => (
                 <li key={link.name}>
                   <a
                     href={link.href}
-                    className="text-slate-500 font-medium hover:text-amber-500 transition-colors"
+                    className="text-white/70 font-medium hover:text-amber-400 transition-colors"
                   >
                     {link.name}
                   </a>
@@ -150,9 +146,9 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-slate-100 backdrop-blur-sm bg-white/50">
-          <div className="py-6 flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-slate-400 text-sm font-medium">
+        <div className="border-t border-white/10 bg-black/10">
+          <div className="py-6 container mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4">
+            <p className="text-white/50 text-sm font-medium">
               © {currentYear} FixKro. All rights reserved.
             </p>
 
@@ -163,7 +159,7 @@ const Footer = () => {
                   key={social.label}
                   href={social.href}
                   aria-label={social.label}
-                  className="w-10 h-10 rounded-full bg-slate-50 border border-slate-100 flex items-center justify-center text-slate-500 hover:bg-white hover:text-amber-500 hover:border-amber-200 hover:shadow-md transition-all"
+                  className="w-10 h-10 rounded-full bg-white/10 border border-white/10 flex items-center justify-center text-white/70 hover:bg-white hover:text-[#015168] hover:shadow-lg transition-all"
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
                 >
